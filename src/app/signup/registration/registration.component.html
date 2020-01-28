@@ -1,0 +1,67 @@
+<mat-card class="example-card">
+  <form>
+    <div>
+      <h3 class="regTitle">REGISTRACIJA</h3>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Ime" />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Prezime" />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Korisničko ime" />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput type="password" placeholder="Lozinka" />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput type="password" placeholder="Potvrda lozinke" />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Datum rođenja">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Mesto rođenja" />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="JMBG" />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput placeholder="Kontakt telefon" />
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <input matInput type="email" placeholder="Email" />
+      </mat-form-field>
+    </div>
+    
+    <div>
+      <button mat-flat-button color="primary">Uloguj se</button>
+    </div>
+    <br />
+    <div>
+      Ako već imate nalog, idite na stranicu <a routerLink="/login">login</a>
+    </div>
+  </form>
+</mat-card>

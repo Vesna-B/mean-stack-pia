@@ -1,0 +1,15 @@
+.loginTitle {
+    text-align: center;
+}
+
+
+.mat-card {
+    margin-bottom: 5rem;
+    margin-top: 5rem;
+    margin-left: 25rem;
+    margin-right: 25rem;
+}
+
+.mat-form-field {
+    width: 100%;
+}
