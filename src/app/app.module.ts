@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { FormsModule }   from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+
 import { LoginComponent } from './signup/login/login.component';
 import { RegistrationComponent } from './signup/registration/registration.component';
 
@@ -30,7 +33,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatCardModule,
     MatButtonModule, 
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule, 
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
