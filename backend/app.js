@@ -49,9 +49,13 @@ app.post("/users", (req, res, next) => {
     });
     console.log('This information is from app.js');
     console.log(user);
-    res.status(200).json({
-        message: 'User added successfully'
+    user.save().then(createdUser => {
+        res.status(200).json({
+            message: 'User added successfully',
+            user: createdUser.username
+        });
     });
+    
 });
 
 
