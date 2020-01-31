@@ -8,9 +8,16 @@ import { SignupService } from '../signup.service';
 })
 export class LoginComponent implements OnInit {
 
+  username: string;
+  password: string;
+
   constructor(private signupService: SignupService) { }
 
   ngOnInit() {
+  }
+
+  login() {
+    this.signupService.login(this.username, this.password);
   }
 
   // login() {

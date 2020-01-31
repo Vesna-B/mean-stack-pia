@@ -17,12 +17,18 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { AdminComponent } from './userspages/admin/admin.component';
+import { AuthorComponent } from './userspages/author/author.component';
+import { BasicComponent } from './userspages/basic/basic.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    AdminComponent,
+    AuthorComponent,
+    BasicComponent
   ],
   imports: [
     BrowserModule,

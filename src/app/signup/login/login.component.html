@@ -1,13 +1,13 @@
 <mat-card>
-  <form>
+  <form #loginForm="ngForm" (ngSubmit)="login()" >
     <h3 class="loginTitle">LOGIN STRANICA</h3>
     <mat-form-field>
-      <input matInput type="email" placeholder="Email" />
+      <input matInput type="text" placeholder="Korisničko ime" name="username" [(ngModel)]="username" required/>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="password" placeholder="Lozinka" />
+      <input matInput type="password" placeholder="Lozinka" name="password" [(ngModel)]="password" required />
     </mat-form-field>
-    <button mat-flat-button color="primary">Uloguj se</button>
+    <button mat-flat-button type="submit" color="primary">Uloguj se</button>
   </form>
   
   <br />

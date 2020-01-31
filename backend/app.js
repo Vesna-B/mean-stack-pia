@@ -54,8 +54,35 @@ app.post("/users", (req, res, next) => {
             message: 'User added successfully',
             user: createdUser.username
         });
-    });
-    
+    });   
+});
+
+
+app.post("/login", (req, res, next) => {
+    User.findOne({ username: req.body.username })
+        .then(user => {
+            if (!user) {
+                return res.status(400).json({
+                    message: "Korisnik nije pronadjen"
+                });
+            }
+            if (user.password != req.body.password) {
+                return res.status(401).json({
+                    message: "Pogresna lozinka"
+                });
+            }
+            if (!user.approved) {
+                return res.status(403).json({
+                    message: "Vaš zahtev za registraciju još uvek nije prihvaćen"
+                });
+            }
+            return res.status(200).json({
+                username: user.username,
+                type: user.userType,
+                approved: user.approved,
+                message: ''
+            });
+        });  
 });
 
 
