@@ -1,0 +1,46 @@
+<div class="pollDiv">
+    <table>
+        <tr>
+            <td>Naziv ankete</td>
+            <td>
+                <mat-form-field>
+                    <input matInput class="pollInfo">
+                </mat-form-field>
+            </td>
+        </tr>
+        <tr>
+            <td>Osnovne informacije</td>
+            <td>
+                <mat-form-field>
+                    <textarea matInput class="pollInfo"></textarea>
+                </mat-form-field>
+            </td>
+        </tr>
+        <tr>
+            <td>Datum početka ankete</td>
+            <td>
+                <mat-form-field>
+                    <input matInput [matDatepicker]="dp1" disabled>
+                    <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                    <mat-datepicker #dp1 disabled="false"></mat-datepicker>
+                </mat-form-field>
+            </td>
+        </tr>
+        <tr>
+            <td>Datum kraja ankete</td>
+            <td>
+                <mat-form-field>
+                    <input matInput [matDatepicker]="dp2" disabled>
+                    <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+                    <mat-datepicker #dp2 disabled="false"></mat-datepicker>
+                </mat-form-field>
+            </td>
+        </tr>
+    </table>
+    <app-question-form></app-question-form>
+
+    <br/>
+    <br/>
+    <button type="button" mat-flat-button color="accent">Dodaj pitanje</button>
+</div>
+

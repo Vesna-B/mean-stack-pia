@@ -6,6 +6,8 @@ import { RegistrationComponent } from './signup/registration/registration.compon
 import { AdminComponent } from './userspages/admin/admin.component';
 import { AuthorComponent } from './userspages/author/author.component';
 import { BasicComponent } from './userspages/basic/basic.component';
+import { CreatepollComponent } from './create/createpoll/createpoll.component';
+import { CreatetestComponent } from './create/createtest/createtest.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -13,7 +15,9 @@ const routes: Routes = [
   { path: 'registration', component: RegistrationComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'author', component: AuthorComponent },
-  { path: 'basic', component: BasicComponent }
+  { path: 'basic', component: BasicComponent },
+  { path: 'createpoll', component: CreatepollComponent },
+  { path: 'createtest', component: CreatetestComponent }
 ];
 
 @NgModule({

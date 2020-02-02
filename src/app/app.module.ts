@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { LoginComponent } from './signup/login/login.component';
@@ -20,6 +20,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { AdminComponent } from './userspages/admin/admin.component';
 import { AuthorComponent } from './userspages/author/author.component';
 import { BasicComponent } from './userspages/basic/basic.component';
+import { CreatepollComponent } from './create/createpoll/createpoll.component';
+import { CreatetestComponent } from './create/createtest/createtest.component';
+import { QuestionFormComponent } from './create/question-form/question-form.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import { BasicComponent } from './userspages/basic/basic.component';
     RegistrationComponent,
     AdminComponent,
     AuthorComponent,
-    BasicComponent
+    BasicComponent,
+    CreatepollComponent,
+    CreatetestComponent,
+    QuestionFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,7 +47,8 @@ import { BasicComponent } from './userspages/basic/basic.component';
     MatDatepickerModule,
     MatNativeDateModule, 
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

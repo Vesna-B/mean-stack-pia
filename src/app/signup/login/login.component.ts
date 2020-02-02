@@ -20,9 +20,4 @@ export class LoginComponent implements OnInit {
     this.signupService.login(this.username, this.password);
   }
 
-  // login() {
-  //   console.log('Message sent');
-  //   this.signupService.login(this.username);
-  // }
-
 }

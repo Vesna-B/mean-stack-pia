@@ -1,0 +1,40 @@
+<mat-card>
+    <form [formGroup]="questionForm">
+      <mat-form-field class="questionField" appearance="outline">
+        <mat-label>Pitanje</mat-label>
+        <textarea matInput formControlName="question"></textarea>
+      </mat-form-field>
+      <br/>
+      <br/>
+      <div formArrayName="answers">
+        <mat-form-field *ngFor="let answer of answers.controls; let pointIndex=index" [formGroupName]="pointIndex" appearance="outline">
+            <!-- Answ: <input formControlName="point"/> -->
+            
+            <mat-label>Ponuđeni odgovor</mat-label>
+            <input matInput formControlName="point">
+            <button mat-button matSuffix mat-mini-fab (click)="deleteAnswer()">
+                X
+            </button>
+
+
+            <!-- <button type="button" mat-flat-button color="warn" (click)="deleteAnswer()" class="deleteBtn">X</button> -->
+            
+        </mat-form-field>
+        <button type="button" mat-flat-button color="primary" (click)="addAnswer()">Dodaj odgovor</button>
+      </div>
+   
+      
+        <!-- <div formArrayName="answers">
+          <div *ngFor="let answer of answers.controls; let pointIndex=index" [formGroupName]="pointIndex">
+            <label>
+              Answ: <input formControlName="point"/>
+            </label>
+          </div>
+          <button type="button" (click)="addAnswer()">Dodaj odgovor</button>
+        </div>  -->
+         
+    </form>
+</mat-card>
+
+
+

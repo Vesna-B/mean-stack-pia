@@ -9,8 +9,6 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 })
 export class SignupService {
 
-  url = 'http://localhost:3000';  //ispravi ovo
-
   constructor(private http: HttpClient, private router: Router) { }
 
   register(user: User) {
@@ -36,13 +34,5 @@ export class SignupService {
         return response.message;
       });
   }
-
-  // login(username) {
-  //   this.http.post<string>('http://localhost:3000/users', {username})
-  //   .subscribe(responseData => {
-  //     console.log(responseData);
-  //   });
-  // }
-
 
 }
