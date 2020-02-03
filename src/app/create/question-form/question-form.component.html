@@ -1,5 +1,46 @@
 <mat-card>
     <form [formGroup]="questionForm">
+      <div formArrayName="questions">
+        <div [formGroupName]="i" *ngFor="let question of getQuestions(questionForm); let i = index">
+          <input type="text" placeholder="Pitanje" formControlName="questionTitle">
+          <select formControlName="questionType">
+            <option></option>
+            <option>Checkbox</option>
+            <option>Radiobutton</option>
+            <option>Free text</option>
+            <option>Number</option>
+          </select>
+          <button (click)="addOption(i)">Dodaj opciju</button>
+          <div formArrayName="options">
+            <div [formGroupName]="j" *ngFor="let option of getOptions(question); let j = index">
+              <input type="radio" dirname="disabled">
+              <input type="text" placeholder="option 1" formControlName="optionTitle">
+              <button>Izbriši opciju</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button (click)="addQuestion()">Dodaj pitanje</button>
+    </form>
+</mat-card>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <mat-card>
+    <form [formGroup]="questionForm">
       <mat-form-field class="questionField" appearance="outline">
         <mat-label>Pitanje</mat-label>
         <textarea matInput formControlName="question"></textarea>
@@ -7,34 +48,17 @@
       <br/>
       <br/>
       <div formArrayName="answers">
-        <mat-form-field *ngFor="let answer of answers.controls; let pointIndex=index" [formGroupName]="pointIndex" appearance="outline">
-            <!-- Answ: <input formControlName="point"/> -->
-            
+        <mat-form-field *ngFor="let answer of answers.controls; let pointIndex=index" [formGroupName]="pointIndex" appearance="outline">            
             <mat-label>Ponuđeni odgovor</mat-label>
             <input matInput formControlName="point">
-            <button mat-button matSuffix mat-mini-fab (click)="deleteAnswer()">
-                X
-            </button>
-
-
-            <!-- <button type="button" mat-flat-button color="warn" (click)="deleteAnswer()" class="deleteBtn">X</button> -->
-            
+            <button mat-button matSuffix mat-mini-fab (click)="deleteAnswer()">X</button>    
         </mat-form-field>
         <button type="button" mat-flat-button color="primary" (click)="addAnswer()">Dodaj odgovor</button>
       </div>
-   
-      
-        <!-- <div formArrayName="answers">
-          <div *ngFor="let answer of answers.controls; let pointIndex=index" [formGroupName]="pointIndex">
-            <label>
-              Answ: <input formControlName="point"/>
-            </label>
-          </div>
-          <button type="button" (click)="addAnswer()">Dodaj odgovor</button>
-        </div>  -->
-         
     </form>
-</mat-card>
+</mat-card> -->
+
+
 
 
 
