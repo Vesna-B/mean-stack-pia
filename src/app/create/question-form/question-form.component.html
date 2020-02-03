@@ -1,62 +1,45 @@
-<mat-card>
+<div>
     <form [formGroup]="questionForm">
       <div formArrayName="questions">
-        <div [formGroupName]="i" *ngFor="let question of getQuestions(questionForm); let i = index">
-          <input type="text" placeholder="Pitanje" formControlName="questionTitle">
-          <select formControlName="questionType">
-            <option></option>
-            <option>Checkbox</option>
-            <option>Radiobutton</option>
-            <option>Free text</option>
-            <option>Number</option>
-          </select>
-          <button (click)="addOption(i)">Dodaj opciju</button>
+        <mat-card [formGroupName]="i" *ngFor="let question of getQuestions(questionForm); let i = index">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Pitanje</mat-label>
+            <textarea matInput formControlName="questionTitle" required></textarea>
+          </mat-form-field>
+
+          <mat-form-field class="selectField">
+            <mat-label>Tip pitanja</mat-label>
+            <mat-select formControlName="questionType" required>
+              <mat-option></mat-option>
+              <mat-option>Unos numeričke vrednosti</mat-option>
+              <mat-option>Unos kratkog teksta</mat-option>
+              <mat-option>Unos dugačkog teksta</mat-option>
+              <mat-option>Izbor jednog od više ponuđenih odgovora</mat-option>
+              <mat-option>Izbor više od više ponuđenih odgovora</mat-option>
+            </mat-select>
+          </mat-form-field>
+
           <div formArrayName="options">
             <div [formGroupName]="j" *ngFor="let option of getOptions(question); let j = index">
-              <input type="radio" dirname="disabled">
-              <input type="text" placeholder="option 1" formControlName="optionTitle">
-              <button>Izbriši opciju</button>
+              <mat-form-field class="optionField" appearance="outline">
+                <mat-label>Ponuđeni odgovor</mat-label>
+                <input matInput formControlName="optionTitle">
+              </mat-form-field>
+              &nbsp;
+              <button type="button" mat-flat-button (click)="removeOption(i, j)">Izbriši opciju</button>
             </div>
           </div>
-        </div>
+          <button type="button" mat-flat-button color="primary" (click)="addOption(i)">Dodaj ponuđeni odgovor</button> &nbsp;&nbsp;
+          <button type="button" mat-flat-button color="warn" (click)="removeQuestion(i)">Izbriši pitanje</button>
+        </mat-card>
       </div>
-      <button (click)="addQuestion()">Dodaj pitanje</button>
-    </form>
-</mat-card>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <mat-card>
-    <form [formGroup]="questionForm">
-      <mat-form-field class="questionField" appearance="outline">
-        <mat-label>Pitanje</mat-label>
-        <textarea matInput formControlName="question"></textarea>
-      </mat-form-field>
-      <br/>
-      <br/>
-      <div formArrayName="answers">
-        <mat-form-field *ngFor="let answer of answers.controls; let pointIndex=index" [formGroupName]="pointIndex" appearance="outline">            
-            <mat-label>Ponuđeni odgovor</mat-label>
-            <input matInput formControlName="point">
-            <button mat-button matSuffix mat-mini-fab (click)="deleteAnswer()">X</button>    
-        </mat-form-field>
-        <button type="button" mat-flat-button color="primary" (click)="addAnswer()">Dodaj odgovor</button>
+      <div class="addBtnDiv">
+        <button type="button" mat-flat-button color="accent" (click)="addQuestion()">Dodaj pitanje</button> 
       </div>
     </form>
-</mat-card> -->
+  </div>
 
 
 

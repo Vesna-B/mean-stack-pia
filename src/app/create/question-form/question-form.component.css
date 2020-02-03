@@ -1,9 +1,9 @@
-/* .mat-card {
-    margin-bottom: 0.5rem;
-    margin-top: 0.5rem;
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
-} */
+.mat-card {
+    margin-bottom: 2%;
+    margin-top: 2%;
+    /* margin-left: 0.1rem;
+    margin-right: 0.1rem; */
+}
 
 .mat-form-field {
     width: 100%;
@@ -11,4 +11,16 @@
 
 .deleteBtn {
     margin-left: 95%
+}
+
+.optionField {
+    width: 90%;
+}
+
+.selectField {
+    width: 25%;
+}
+
+.addBtnDiv {
+    margin-top: 3%;
 }
