@@ -41,7 +41,9 @@ export class RegistrationComponent implements OnInit {
     this.user.userType = 'basic';
     
     this.signupService.register(this.user);
-    console.log('This is from registration.component.ts');    //delete this after testing
+
+    //delete this after testing
+    console.log('This is from registration.component.ts');    
     console.log(this.user);
   }
 

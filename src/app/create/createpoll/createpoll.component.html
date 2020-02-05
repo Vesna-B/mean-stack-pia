@@ -1,15 +1,15 @@
 <div class="formDiv">
-  <form [formGroup]="questionForm">
+  <form [formGroup]="questionForm" (ngSubmit)="submit()">
     <mat-card class="infoDiv">
       <div class="titleDiv">
         <h2>Forma za kreiranje ankete</h2>
       </div>
       <table>
           <tr>
-              <td>Naziv testa</td>
+              <td>Naziv ankete</td>
               <td>
                   <mat-form-field>
-                      <input matInput>
+                      <input matInput formControlName="name">
                   </mat-form-field>
               </td>
           </tr>
@@ -17,7 +17,7 @@
               <td>Osnovne informacije</td>
               <td>
                   <mat-form-field>
-                      <textarea matInput></textarea>
+                      <textarea matInput formControlName="info"></textarea>
                   </mat-form-field>
               </td>
           </tr>
@@ -25,7 +25,7 @@
               <td>Datum od kada se može rešavati anketa</td>
               <td>
                   <mat-form-field>
-                      <input matInput [matDatepicker]="dp1" disabled>
+                      <input matInput formControlName="startDate" [matDatepicker]="dp1" disabled>
                       <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
                       <mat-datepicker #dp1 disabled="false"></mat-datepicker>
                   </mat-form-field>
@@ -35,7 +35,7 @@
               <td>Datum do kada se može rešiti anketa</td>
               <td>
                   <mat-form-field>
-                      <input matInput [matDatepicker]="dp2" disabled>
+                      <input matInput formControlName="endDate" [matDatepicker]="dp2" disabled>
                       <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
                       <mat-datepicker #dp2 disabled="false"></mat-datepicker>
                   </mat-form-field>
@@ -56,11 +56,11 @@
           <mat-label>Tip pitanja</mat-label>
           <mat-select formControlName="questionType" required>
             <mat-option></mat-option>
-            <mat-option>Unos numeričke vrednosti</mat-option>
-            <mat-option>Unos kratkog teksta</mat-option>
-            <mat-option>Unos dugačkog teksta</mat-option>
-            <mat-option>Izbor jednog od više ponuđenih odgovora</mat-option>
-            <mat-option>Izbor više od više ponuđenih odgovora</mat-option>
+            <mat-option value="number">Unos numeričke vrednosti</mat-option>
+            <mat-option value="input">Unos kratkog teksta</mat-option>
+            <mat-option value="textarea">Unos dugačkog teksta</mat-option>
+            <mat-option value="radiobutton">Izbor jednog od više ponuđenih odgovora</mat-option>
+            <mat-option value="checkbox">Izbor više od više ponuđenih odgovora</mat-option>
           </mat-select>
         </mat-form-field>
 
@@ -79,9 +79,24 @@
       </mat-card>
     </div>
 
-    <button class="addBtnDiv" type="button" mat-flat-button color="accent" (click)="addQuestion()">Dodaj pitanje</button>  
+    <button class="addBtnDiv" type="button" mat-flat-button color="accent" (click)="addQuestion()">Dodaj pitanje</button> &nbsp;&nbsp;
+    <button type="submit" mat-flat-button color="accent">Sačuvaj</button>   
   </form>
 </div>
+
+<!-- delete after testin -->
+<br/><br/><br/><br/>
+<!-- {{questionForm.name}}
+<br/>
+{{questionForm.info}}
+<br/>
+{{questionForm.startDate}}
+<br/>
+{{questionForm.endDate}}
+<br/>
+{{questionForm.questions}} -->
+
+<pre>{{questionForm.value | json}}</pre>
 
 
 

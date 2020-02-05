@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
+const uniqueValidator = require('mongoose-unique-validator');
 
 const userSchema = mongoose.Schema({
     name: { type: String, required: true },
     surname: { type: String, required: true },
-    username: { type: String, required: true },
+    username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     dateOfBirth: { type: Date, required: true },
     placeOfBirth: { type: String, required: true },
@@ -13,6 +14,8 @@ const userSchema = mongoose.Schema({
     userType: { type: String, required: true },
     approved: { type: Boolean, required: true}      //default: false; true when admin approve
 });
+
+userSchema.plugin(uniqueValidator);     //trows error if we try to register user with existing username
 
 module.exports = mongoose.model('User', userSchema);
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SignupService } from '../signup.service';
 
 @Component({
@@ -10,6 +10,7 @@ export class LoginComponent implements OnInit {
 
   username: string;
   password: string;
+  // message: string;
 
   constructor(private signupService: SignupService) { }
 

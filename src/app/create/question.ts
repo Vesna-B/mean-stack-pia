@@ -1,4 +1,9 @@
 export class Question {
-    qu_text: string;
-    answers: string[];
+    title: string;
+    type: string;
+    options: Options[];
+}
+
+export class Options {
+    title: string;
 }

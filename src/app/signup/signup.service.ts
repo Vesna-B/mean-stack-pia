@@ -11,10 +11,12 @@ export class SignupService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
+  //loginMsg = '';
+
   register(user: User) {
     this.http.post('http://localhost:3000/users', user)
       .subscribe(responseMsg => {
-        console.log(responseMsg);
+        console.log(responseMsg); 
       });
 
   }
@@ -31,6 +33,7 @@ export class SignupService {
         if (response.type == 'basic' && response.approved) {
           this.router.navigate(['basic']);
         }
+        //this.loginMsg = response.message;
         return response.message;
       });
   }

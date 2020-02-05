@@ -2,7 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
 
-const User = require('./models/user')
+const User = require('./models/user');
+const Poll = require('./models/poll');
 
 const app = express();      //express app is always express, that is why it is const
                             //we change only middlewares
@@ -63,12 +64,12 @@ app.post("/login", (req, res, next) => {
         .then(user => {
             if (!user) {
                 return res.status(400).json({
-                    message: "Korisnik nije pronadjen"
+                    message: "Korisnik nije pronađen"
                 });
             }
             if (user.password != req.body.password) {
                 return res.status(401).json({
-                    message: "Pogresna lozinka"
+                    message: "Pogrešna lozinka"
                 });
             }
             if (!user.approved) {
@@ -86,16 +87,49 @@ app.post("/login", (req, res, next) => {
 });
 
 
-// app.use("/users",(req, res, next) => {
-//     const users = [
-//         {name: 'mika', pass: 'mika123'},
-//         {name: 'zika', pass: 'zika123'}
-//     ];
-//     res.status(200).json({
-//         message: 'Users fetched successfully',
-//         users: users
+
+app.post('/polls', (req, res, next) => {
+    console.log('Received from frontend');
+    console.log(req.body);
+
+    const poll = new Poll({
+        name: req.body.name,
+        info: req.body.info,
+        startDate: req.body.startDate,
+        endDate: req.body.endDate,
+        questions: [...{
+            title: req.body.questions.questionTitle,
+            type: req.body.questions.questionType,
+            options: [...{
+                optTitle: req.body.questions.options
+            }]
+        }]
+    });
+
+    console.log('Model for base');
+    console.log(poll);
+    poll.save().then(() => {
+        res.status(200).json({
+            message: 'Poll added successfully',
+            //poll: createdPoll.name
+        }).then().catch(err => console.log(err));
+    });
+});
+
+
+// app.get('/polls', (req, res, next) => {
+//     Poll.find().then(documents => {
+//         res.status(200).json({
+//             message: 'Fetched data',
+//             polls: documents
+//         });
 //     });
 // });
+
+
+
+
+
 
 
 

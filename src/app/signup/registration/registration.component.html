@@ -25,9 +25,11 @@
     </mat-form-field>
 
     <mat-form-field>
-      <input #passTag='ngModel' matInput type="password" placeholder="Lozinka" name="passwod" [(ngModel)]="password" required />
+      <input #passTag='ngModel' matInput type="password" placeholder="Lozinka" name="passwod" [(ngModel)]="password" required 
+              pattern="^(?=.*[A-Z])(?=.*\d)(?=.*\W)[a-zA-Z].{7,}$"/>
       <div *ngIf="regForm.submitted && passTag.invalid" class="alert">
-        Ovo polje je obavezno!
+        <span *ngIf="passTag.errors.pattern">Lozinka mora sadržati minimum 1 veliko slovo, 1 broj, 1 specijalni karakter, mora početi slovom i mora biti dužine 8 karaktera</span>
+        <span *ngIf="!passTag.errors.pattern">Ovo polje je obavezno!</span> 
       </div>
     </mat-form-field>
 

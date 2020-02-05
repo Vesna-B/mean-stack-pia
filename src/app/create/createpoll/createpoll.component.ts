@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { CreateService } from '../create.service';
+import { Question } from '../question';
 
 @Component({
   selector: 'app-createpoll',
@@ -8,7 +10,7 @@ import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 })
 export class CreatepollComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private createService: CreateService) { }
 
   questionForm: FormGroup;
 
@@ -27,8 +29,8 @@ export class CreatepollComponent implements OnInit {
 
   initQuestion() {
     return this.formBuilder.group({
-      questionTitle: [],
-      questionType: [],
+      questionTitle: [''],
+      questionType: [''],
       options: new FormArray([
         this.initOptions()
       ])
@@ -70,6 +72,11 @@ export class CreatepollComponent implements OnInit {
   removeOption(i, j) {
     const optionArray = <FormArray>this.questionForm.get(['questions', i, 'options']);
     optionArray.removeAt(j);
+  }
+
+  submit() {
+    //console.log(JSON.stringify(this.questionForm.value));
+    //this.createService.createPoll(this.questionForm.value);
   }
 
 }
