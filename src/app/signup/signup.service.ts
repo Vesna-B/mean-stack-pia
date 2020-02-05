@@ -22,7 +22,7 @@ export class SignupService {
   }
 
   login(username: string, password: string) {
-    this.http.post<{username: string, type: string, approved: string, message: string}>('http://localhost:3000/login', {username, password})
+    this.http.post<{username: string, type: string, approved: string, message: string}>('http://localhost:3000/users/login', {username, password})
       .subscribe(response => {
         if (response.type == 'admin') {
           this.router.navigate(['admin']);

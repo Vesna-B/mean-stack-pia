@@ -2,7 +2,9 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
 
-const User = require('./models/user');
+const userRoutes = require('./routes/users');
+
+
 const Poll = require('./models/poll');
 
 const app = express();      //express app is always express, that is why it is const
@@ -15,6 +17,7 @@ mongoose.connect("mongodb+srv://MyMDBUser:myuser20@projekat-335ya.mongodb.net/pi
     .catch(() => {
         console.log('Connection failed');
     });
+
 
 app.use(bodyParser.json());     //middleware for parsing json data
 
@@ -34,59 +37,7 @@ app.use((req, res, next) => {
 });
 
 
-app.post("/users", (req, res, next) => {
-    const user = new User({
-        name: req.body.name,
-        surname: req.body.surname,
-        username: req.body.username,
-        password: req.body.password,
-        dateOfBirth: req.body.dateOfBirth,
-        placeOfBirth: req.body.placeOfBirth,
-        identNum: req.body.identNum,
-        phone: req.body.phone,
-        email: req.body.email,
-        userType: req.body.userType,
-        approved: "false"
-    });
-    console.log('This information is from app.js');
-    console.log(user);
-    user.save().then(createdUser => {
-        res.status(200).json({
-            message: 'User added successfully',
-            user: createdUser.username
-        });
-    });   
-});
-
-
-app.post("/login", (req, res, next) => {
-    User.findOne({ username: req.body.username })
-        .then(user => {
-            if (!user) {
-                return res.status(400).json({
-                    message: "Korisnik nije pronađen"
-                });
-            }
-            if (user.password != req.body.password) {
-                return res.status(401).json({
-                    message: "Pogrešna lozinka"
-                });
-            }
-            if (!user.approved) {
-                return res.status(403).json({
-                    message: "Vaš zahtev za registraciju još uvek nije prihvaćen"
-                });
-            }
-            return res.status(200).json({
-                username: user.username,
-                type: user.userType,
-                approved: user.approved,
-                message: ''
-            });
-        });  
-});
-
-
+//------------------------------------ move to routes/polls ---------------
 
 app.post('/polls', (req, res, next) => {
     console.log('Received from frontend');
@@ -116,22 +67,10 @@ app.post('/polls', (req, res, next) => {
     });
 });
 
-
-// app.get('/polls', (req, res, next) => {
-//     Poll.find().then(documents => {
-//         res.status(200).json({
-//             message: 'Fetched data',
-//             polls: documents
-//         });
-//     });
-// });
+//------------------------------------------------------------------------------------------
 
 
 
-
-
-
-
-
+app.use("/users" , userRoutes);
 
 module.exports = app;
