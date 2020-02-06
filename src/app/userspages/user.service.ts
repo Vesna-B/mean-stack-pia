@@ -38,8 +38,8 @@ export class UserService {
 
 
 
-  deleteUser(user) {
-    this.http.delete(`http://localhost:3000/users`)
+  deleteUser(id) {
+    this.http.delete("http://localhost:3000/users/" + id)
       .subscribe(() => {
         console.log("Deleted");
       });

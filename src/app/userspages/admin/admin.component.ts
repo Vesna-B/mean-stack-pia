@@ -43,8 +43,9 @@ export class AdminComponent implements OnInit {
   }
 
 
-  delete(user: User) {
-    this.userService.deleteUser(user);
+  delete(id: string) {
+    console.log(id);
+    this.userService.deleteUser(id);
   }
 
 

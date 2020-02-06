@@ -6,7 +6,7 @@
   <p>{{user.name}}&nbsp;{{user.surname}}</p>
   <p>{{user.username}}</p>
   <p>{{user.email}}</p>
-  <button mat-flat-button type="button" color="warn" (click)="delete(user)">Obriši</button>&nbsp;
+  <button mat-flat-button type="button" color="warn" (click)="delete(user._id)">Obriši</button>&nbsp;
   <span *ngIf="user.approved == 'waiting' ">
     <button mat-flat-button type="button" color="accent" (click)="accept(user)">Prihvati</button>&nbsp;
     <button mat-flat-button type="button" color="primary" (click)="reject(user)">Odbij</button>

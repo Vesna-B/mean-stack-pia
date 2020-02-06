@@ -68,8 +68,9 @@ router.post("/login", (req, res, next) => {
 
 
 router.delete("/:id", (req, res, next) => {
-    User.deleteOne({ id: req.params._id })
-        .then(result => {
+    User.deleteOne({ _id: req.params.id })
+        .then(() => {
+            console.log('User is deleted');
             res.status(200).json({
                 message: 'User deleted successfully'
             });
