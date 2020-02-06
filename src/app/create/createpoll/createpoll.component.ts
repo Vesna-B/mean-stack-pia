@@ -74,9 +74,11 @@ export class CreatepollComponent implements OnInit {
     optionArray.removeAt(j);
   }
 
+  
   submit() {
-    //console.log(JSON.stringify(this.questionForm.value));
-    //this.createService.createPoll(this.questionForm.value);
+    console.log('This is from component');
+    console.log(this.questionForm.value);
+    this.createService.createPoll(this.questionForm.value);
   }
 
 }
