@@ -6,9 +6,11 @@
   <p>{{user.name}}&nbsp;{{user.surname}}</p>
   <p>{{user.username}}</p>
   <p>{{user.email}}</p>
-  <button mat-flat-button type="button" color="warn" (click)="delete(user._id)">Obriši</button>&nbsp;
-  <span *ngIf="user.approved != true">
-    <button mat-flat-button type="button" color="accent" (click)="accept(user._id)">Prihvati</button>&nbsp;
-    <button mat-flat-button type="button" color="primary" (click)="reject(user._id)">Odbij</button>
+  <button mat-flat-button type="button" color="warn" (click)="delete(user)">Obriši</button>&nbsp;
+  <span *ngIf="user.approved == 'waiting' ">
+    <button mat-flat-button type="button" color="accent" (click)="accept(user)">Prihvati</button>&nbsp;
+    <button mat-flat-button type="button" color="primary" (click)="reject(user)">Odbij</button>
   </span> 
+  <span *ngIf="user.approved == 'approved' ">Ovaj korisnik je prihvaćen</span>
+  <span *ngIf="user.approved == 'rejected' ">Ovaj korisnik je odbijen</span>
 </mat-card>

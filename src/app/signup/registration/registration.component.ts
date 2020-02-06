@@ -40,7 +40,7 @@ export class RegistrationComponent implements OnInit {
     this.user.phone = this.phone;
     this.user.email = this.email;
     this.user.userType = 'basic';
-    this.user.approved = false;
+    this.user.approved = 'waiting';
     
     this.signupService.register(this.user);
 

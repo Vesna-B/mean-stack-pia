@@ -10,5 +10,5 @@ export class User {
     phone: string;
     email: string;
     userType: string;
-    approved: Boolean;
+    approved: string;
 }

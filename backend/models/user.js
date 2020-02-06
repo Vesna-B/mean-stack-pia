@@ -12,7 +12,7 @@ const userSchema = mongoose.Schema({
     phone: { type: String, required: true },
     email: { type: String, required: true },
     userType: { type: String, required: true },
-    approved: { type: Boolean, required: true}      //default: false; true when admin approve
+    approved: { type: String, required: true}      //default: waiting; approved/rejected when admin approve/reject
 });
 
 userSchema.plugin(uniqueValidator);     //trows error if we try to register user with existing username

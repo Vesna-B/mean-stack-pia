@@ -29,7 +29,8 @@
 
     <mat-form-field>
       <input #repPassTag='ngModel' matInput type="password" placeholder="Potvrda lozinke" name="repeatPasswod" [(ngModel)]="repeatPassword" required /> 
-      <mat-error *ngIf="passTag.value != repPassTag.value" class="alert">Ovo polje mora biti isto kao i prethodno!</mat-error>
+      <label *ngIf="repPassTag.value != passTag.value" class="alert">Ovo polje mora biti isto kao i prethodno!</label>
+      <mat-error *ngIf="regForm.submitted && repPassTag.invalid">Ovo polje je obavezno!</mat-error>
     </mat-form-field>
 
     <mat-form-field>

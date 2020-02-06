@@ -15,8 +15,8 @@ export class SignupService {
 
   register(user: User) {
     this.http.post('http://localhost:3000/users', user)
-      .subscribe(responseMsg => {
-        console.log(responseMsg); 
+      .subscribe(response => {
+        console.log(response); 
       });
 
   }
@@ -27,10 +27,10 @@ export class SignupService {
         if (response.type == 'admin') {
           this.router.navigate(['admin']);
         }
-        if (response.type == 'author' && response.approved) {
+        if (response.type == 'author' && response.approved == 'approved') {
           this.router.navigate(['author']);
         }
-        if (response.type == 'basic' && response.approved) {
+        if (response.type == 'basic' && response.approved == 'approved') {
           this.router.navigate(['basic']);
         }
         //this.loginMsg = response.message;

@@ -68,11 +68,34 @@ router.post("/login", (req, res, next) => {
 
 
 router.delete("/:id", (req, res, next) => {
-    console.log(req.params.id);
-    res.status(200).json({
-        message: 'User deleted'
-    });
+    User.deleteOne({ id: req.params._id })
+        .then(result => {
+            res.status(200).json({
+                message: 'User deleted successfully'
+            });
+        })
+        .catch(err => {
+            console.log(err);
+        });
 });
+
+
+router.put("", (req, res, next) => {
+    User.findById(req.body._id)
+        .then(fetchedUser => {
+            console.log('Before changes');
+            console.log(fetchedUser);
+            fetchedUser.approved = req.body.approved;
+            fetchedUser.save();
+            console.log('After changes');
+            console.log(fetchedUser);
+            res.status(200).json({
+                message: 'User updated'
+            });
+        })
+        .catch(err => console.log(err));
+});
+
 
 
 module.exports = router;

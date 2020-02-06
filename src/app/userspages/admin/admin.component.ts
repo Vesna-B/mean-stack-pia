@@ -29,18 +29,22 @@ export class AdminComponent implements OnInit {
   }
 
 
-  accept(id: string) {
-    this.userService.acceptUser(id);
+  accept(user: User) {
+    let userForChange = user;
+    userForChange.approved = 'approved';
+    this.userService.acceptUser(userForChange);
   }
 
 
-  reject(id: string) {
-
+  reject(user:User) {
+    let userForChange = user;
+    userForChange.approved = 'rejected';
+    this.userService.rejectUser(userForChange);
   }
 
 
-  delete(id: string) {
-    this.userService.deleteUser(id);
+  delete(user: User) {
+    this.userService.deleteUser(user);
   }
 
 

@@ -19,17 +19,27 @@ export class UserService {
   }
 
 
-  acceptUser(id: string) {
-    this.http.patch("http://localhost:3000/users", id)
+  acceptUser(user: User) {
+    this.http.put("http://localhost:3000/users", user)
       .subscribe(res => {
-        console.log("User updated successfully");
+        console.log("User approved (user service)");
         console.log(res);
       });
   }
 
 
-  deleteUser(id: string) {
-    this.http.delete(`http://localhost:3000/users/${id}`)
+  rejectUser(user: User) {
+    this.http.put("http://localhost:3000/users", user)
+      .subscribe(res => {
+        console.log("User rejected (user service)");
+        console.log(res);
+      });
+  }
+
+
+
+  deleteUser(user) {
+    this.http.delete(`http://localhost:3000/users`)
       .subscribe(() => {
         console.log("Deleted");
       });
