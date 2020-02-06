@@ -18,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
 
 import { AdminComponent } from './userspages/admin/admin.component';
 import { AuthorComponent } from './userspages/author/author.component';
@@ -51,7 +52,8 @@ import { QuestionFormComponent } from './create/question-form/question-form.comp
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

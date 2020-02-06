@@ -1,4 +1,5 @@
 export class User {
+    _id: string;
     name: string;
     surname: string;
     username: string;
@@ -9,4 +10,5 @@ export class User {
     phone: string;
     email: string;
     userType: string;
+    approved: Boolean;
 }

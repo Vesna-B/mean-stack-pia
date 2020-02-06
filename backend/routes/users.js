@@ -17,7 +17,7 @@ router.post("", (req, res, next) => {
         phone: req.body.phone,
         email: req.body.email,
         userType: req.body.userType,
-        approved: "false"
+        approved: req.body.approved
     });
     console.log('This information is from app.js');
     console.log(user);
@@ -27,6 +27,15 @@ router.post("", (req, res, next) => {
             user: createdUser.username
         });
     });   
+});
+
+
+router.get("", (req, res, next) => {
+    User.find().then(fetchedData => {
+        res.status(200).json({
+            users: fetchedData
+        });
+    });
 });
 
 
@@ -55,6 +64,14 @@ router.post("/login", (req, res, next) => {
                 message: ''
             });
         });  
+});
+
+
+router.delete("/:id", (req, res, next) => {
+    console.log(req.params.id);
+    res.status(200).json({
+        message: 'User deleted'
+    });
 });
 
 

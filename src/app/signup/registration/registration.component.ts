@@ -29,6 +29,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   register() {
+    this.user._id = null;
     this.user.name = this.name;
     this.user.surname = this.surname;
     this.user.username = this.username;
@@ -39,6 +40,7 @@ export class RegistrationComponent implements OnInit {
     this.user.phone = this.phone;
     this.user.email = this.email;
     this.user.userType = 'basic';
+    this.user.approved = false;
     
     this.signupService.register(this.user);
 
