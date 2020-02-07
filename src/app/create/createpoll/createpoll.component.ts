@@ -30,11 +30,11 @@ export class CreatepollComponent implements OnInit {
 
   initQuestion() {
     return this.formBuilder.group({
-      questionTitle: [''],
-      questionType: [''],
-      options: new FormArray([
-        this.initOptions()
-      ])
+      questionTitle: ['']
+      // questionType: [''],
+      // options: new FormArray([
+      //   this.initOptions()
+      // ])
     });
   }
 

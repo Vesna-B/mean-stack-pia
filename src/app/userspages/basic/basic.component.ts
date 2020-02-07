@@ -25,4 +25,19 @@ export class BasicComponent implements OnInit {
       });
   }
 
+  fillPoll(poll) {
+    // console.log('Dohvati formu')
+    // let fetchedPoll = this.polls.find(({ _id }) => _id === poll._id)
+    // //console.log(this.polls[0].questions[0].questionTitle);
+    // console.log(fetchedPoll);
+    // for (let i = 0; i < fetchedPoll.questions.length; i++) {
+    //   console.log(fetchedPoll.questions[i].questionTitle)
+    // }
+
+
+    let fetchedPoll = this.polls.find(({ _id }) => _id === poll._id);
+    this.anwserService.fillPoll(fetchedPoll);
+    
+  }
+
 }

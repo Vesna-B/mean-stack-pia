@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Poll } from '../poll';
+import { AnswerService } from '../answer.service';
 
 @Component({
   selector: 'app-answerpoll',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AnswerpollComponent implements OnInit {
 
-  constructor() { }
+  //@Input() poll: Poll = null;
+  poll: Poll = null;
+
+  constructor(private answerService: AnswerService) { }
 
   ngOnInit() {
+    this.poll = this.answerService.pollToAnswer;
   }
 
 }

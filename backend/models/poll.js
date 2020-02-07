@@ -6,13 +6,10 @@ const pollSchema = mongoose.Schema({
     info: { type: String, required: true },
     startDate: { type: Date },
     endDate: { type: Date },
-    questions: [{
-        title: { type: String },
-        type: { type: String },
-        options: [{
-            optTitle: { type: String}
-        }]
-    }]
+    questions: { type: Array }
+    // questions: [{
+    //     title: { type: String }
+    // }]
 });
 
 
