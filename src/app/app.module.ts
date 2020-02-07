@@ -26,6 +26,8 @@ import { BasicComponent } from './userspages/basic/basic.component';
 import { CreatepollComponent } from './create/createpoll/createpoll.component';
 import { CreatetestComponent } from './create/createtest/createtest.component';
 import { QuestionFormComponent } from './create/question-form/question-form.component';
+import { AnswerpollComponent } from './answer/answerpoll/answerpoll.component';
+import { AnswertestComponent } from './answer/answertest/answertest.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { QuestionFormComponent } from './create/question-form/question-form.comp
     CreatepollComponent,
     CreatetestComponent,
     QuestionFormComponent,
+    AnswerpollComponent,
+    AnswertestComponent,
   ],
   imports: [
     BrowserModule,

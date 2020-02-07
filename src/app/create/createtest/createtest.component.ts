@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { CreateService } from '../create.service';
 
 @Component({
   selector: 'app-createtest',
@@ -8,12 +9,13 @@ import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 })
 export class CreatetestComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private createService: CreateService) { }
 
   questionForm: FormGroup;
 
   ngOnInit() {
     this.questionForm = this.formBuilder.group({
+      author: [localStorage.getItem('currentUser')],
       name: [''],
       info: [''],
       startDate: [Date],
@@ -70,6 +72,16 @@ export class CreatetestComponent implements OnInit {
   removeOption(i, j) {
     const optionArray = <FormArray>this.questionForm.get(['questions', i, 'options']);
     optionArray.removeAt(j);
+  }
+
+
+  submit() {
+    console.log('This is from component');
+    console.log(this.questionForm.value);
+
+    console.log(localStorage.getItem('currentUser'));
+    
+    this.createService.createTest(this.questionForm.value);
   }
 
 }

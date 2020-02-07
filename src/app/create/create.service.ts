@@ -11,20 +11,21 @@ export class CreateService {
 
 
   createPoll(data) {
-    console.log('This info is from frontend service')
+    console.log('This info is from frontend service - poll')
     console.log(data);
     this.http.post<{ message: string }>('http://localhost:3000/polls', data)
       .subscribe(res => {
         console.log(res.message)
       });
-
   }
 
-
-  //move to other service
-  
-  // getPolls() {
-  //   this.http.get<{ message: string }>('http://localhost:3000/polls').subscribe(res => console.log(res.message));
-  // }
+  createTest(data) {
+    console.log('This info is from frontend service - test')
+    console.log(data);
+    this.http.post<{ message: string }>('http://localhost:3000/tests', data)
+      .subscribe(res => {
+        console.log(res.message)
+      });
+  }
 
 }

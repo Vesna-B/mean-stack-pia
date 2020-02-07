@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 
 const userRoutes = require('./routes/users');
 const pollRoutes = require('./routes/polls');
+const testRoutes = require('./routes/tests');
 
 const app = express();      //express app is always express, that is why it is const
                             //we change only middlewares
@@ -36,6 +37,7 @@ app.use((req, res, next) => {
 
 
 app.use("/users", userRoutes);
-app.use("/polls", pollRoutes)
+app.use("/polls", pollRoutes);
+app.use("/tests", testRoutes);
 
 module.exports = app;

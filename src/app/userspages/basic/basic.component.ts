@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CreateService } from 'src/app/create/create.service';
+import { AnswerService } from 'src/app/answer/answer.service';
+import { Poll } from 'src/app/answer/poll';
 
 @Component({
   selector: 'app-basic',
@@ -8,13 +9,20 @@ import { CreateService } from 'src/app/create/create.service';
 })
 export class BasicComponent implements OnInit {
 
-  constructor(private createService: CreateService) { }
+  polls: Poll[] = [];
+
+  constructor(private anwserService: AnswerService) { }
 
   ngOnInit() {
+    this.getPolls();
   }
 
   getPolls() {
-    //this.createService.getPolls();
+    this.anwserService.getPolls()
+      .subscribe(responseData => {
+        this.polls = responseData.polls;
+        console.log(this.polls);
+      });
   }
 
 }
