@@ -10,7 +10,6 @@ export class LoginComponent implements OnInit {
 
   username: string;
   password: string;
-  // message: string;
 
   constructor(private signupService: SignupService) { }
 

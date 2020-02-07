@@ -77,10 +77,6 @@ export class CreatepollComponent implements OnInit {
 
 
   submit() {
-    console.log('This is from component');
-    console.log(this.questionForm.value);
-
-    console.log(localStorage.getItem('currentUser'));
     
     this.createService.createPoll(this.questionForm.value);
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Poll } from '../poll';
 import { AnswerService } from '../answer.service';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-answerpoll',
@@ -9,13 +10,17 @@ import { AnswerService } from '../answer.service';
 })
 export class AnswerpollComponent implements OnInit {
 
-  //@Input() poll: Poll = null;
-  poll: Poll = null;
+  poll: Poll;
+  questionForm: FormGroup;
 
-  constructor(private answerService: AnswerService) { }
+  constructor(private answerService: AnswerService, private formBuilder: FormBuilder) { }
+
 
   ngOnInit() {
     this.poll = this.answerService.pollToAnswer;
+
   }
+
+
 
 }

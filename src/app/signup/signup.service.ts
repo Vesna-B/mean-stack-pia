@@ -10,7 +10,6 @@ export class SignupService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  //loginMsg = '';
 
   register(user: User) {
     this.http.post('http://localhost:3000/users', user)
@@ -35,7 +34,6 @@ export class SignupService {
           localStorage.setItem('currentUser', response.username);
           this.router.navigate(['basic']);
         }
-        //this.loginMsg = response.message;
         return response.message;
       });
   }

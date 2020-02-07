@@ -44,9 +44,6 @@ export class RegistrationComponent implements OnInit {
     
     this.signupService.register(this.user);
 
-    //delete this after testing
-    console.log('This is from registration.component.ts');    
-    console.log(this.user);
   }
 
 }

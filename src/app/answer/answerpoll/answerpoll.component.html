@@ -1,1 +1,19 @@
-{{poll.name}}
+<mat-card class="infoDiv">
+    <div class="titleDiv">
+      <h2>Forma za popunjavanje ankete</h2>
+    </div>
+    <table>
+        <tr>
+            <td>Naziv ankete</td>
+            <td>{{ poll.name }}</td>
+        </tr>
+        <tr>
+            <td>Osnovne informacije</td>
+            <td>{{ poll.info }}</td>
+        </tr>
+    </table>
+</mat-card>
+<mat-card *ngFor="let question of poll.questions">
+  <mat-label>{{ question.questionTitle }}</mat-label>
+  <textarea matInput required></textarea>
+</mat-card>

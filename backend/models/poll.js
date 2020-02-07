@@ -7,9 +7,6 @@ const pollSchema = mongoose.Schema({
     startDate: { type: Date },
     endDate: { type: Date },
     questions: { type: Array }
-    // questions: [{
-    //     title: { type: String }
-    // }]
 });
 
 

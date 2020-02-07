@@ -52,29 +52,6 @@
           <textarea matInput formControlName="questionTitle" required></textarea>
         </mat-form-field>
 
-        <!-- <mat-form-field class="selectField">
-          <mat-label>Tip pitanja</mat-label>
-          <mat-select formControlName="questionType" required>
-            <mat-option></mat-option>
-            <mat-option value="number">Unos numeričke vrednosti</mat-option>
-            <mat-option value="input">Unos kratkog teksta</mat-option>
-            <mat-option value="textarea">Unos dugačkog teksta</mat-option>
-            <mat-option value="radiobutton">Izbor jednog od više ponuđenih odgovora</mat-option>
-            <mat-option value="checkbox">Izbor više od više ponuđenih odgovora</mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <div formArrayName="options">
-          <div [formGroupName]="j" *ngFor="let option of getOptions(question); let j = index">
-            <mat-form-field class="optionField" appearance="outline">
-              <mat-label>Ponuđeni odgovor</mat-label>
-              <input matInput formControlName="optionTitle">
-            </mat-form-field>
-            &nbsp;
-            <button type="button" mat-flat-button (click)="removeOption(i, j)">Izbriši opciju</button>
-          </div>
-        </div>
-        <button type="button" mat-flat-button color="primary" (click)="addOption(i)">Dodaj ponuđeni odgovor</button> &nbsp;&nbsp; -->
         <button type="button" mat-flat-button color="warn" (click)="removeQuestion(i)">Izbriši pitanje</button>
       </mat-card>
     </div>
@@ -84,13 +61,6 @@
   </form>
 </div>
 
-
-
-<!-- delete after testing -->
-
-<br/><br/><br/><br/>
-
-<pre>{{questionForm.value | json}}</pre>
 
 
 

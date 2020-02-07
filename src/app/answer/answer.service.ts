@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AnswerService {
 
-  //polls: Poll[];
+
   pollToAnswer: Poll;
 
   constructor(private http: HttpClient, private router: Router) { }
