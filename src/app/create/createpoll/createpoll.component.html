@@ -9,7 +9,7 @@
               <td>Naziv ankete</td>
               <td>
                   <mat-form-field>
-                      <input matInput formControlName="name">
+                      <input matInput formControlName="name" required>
                   </mat-form-field>
               </td>
           </tr>
@@ -17,7 +17,7 @@
               <td>Osnovne informacije</td>
               <td>
                   <mat-form-field>
-                      <textarea matInput formControlName="info"></textarea>
+                      <textarea matInput formControlName="info" required></textarea>
                   </mat-form-field>
               </td>
           </tr>
@@ -25,7 +25,7 @@
               <td>Datum od kada se može rešavati anketa</td>
               <td>
                   <mat-form-field>
-                      <input matInput formControlName="startDate" [matDatepicker]="dp1" disabled>
+                      <input matInput formControlName="startDate" [matDatepicker]="dp1" disabled required>
                       <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
                       <mat-datepicker #dp1 disabled="false"></mat-datepicker>
                   </mat-form-field>
@@ -35,7 +35,7 @@
               <td>Datum do kada se može rešiti anketa</td>
               <td>
                   <mat-form-field>
-                      <input matInput formControlName="endDate" [matDatepicker]="dp2" disabled>
+                      <input matInput formControlName="endDate" [matDatepicker]="dp2" disabled required>
                       <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
                       <mat-datepicker #dp2 disabled="false"></mat-datepicker>
                   </mat-form-field>
@@ -84,18 +84,11 @@
   </form>
 </div>
 
-<!-- delete after testin -->
+
+
+<!-- delete after testing -->
 
 <br/><br/><br/><br/>
-<!-- {{questionForm.name}}
-<br/>
-{{questionForm.info}}
-<br/>
-{{questionForm.startDate}}
-<br/>
-{{questionForm.endDate}}
-<br/>
-{{questionForm.questions}} -->
 
 <pre>{{questionForm.value | json}}</pre>
 

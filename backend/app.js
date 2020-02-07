@@ -3,9 +3,7 @@ const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
 
 const userRoutes = require('./routes/users');
-
-
-const Poll = require('./models/poll');
+const pollRoutes = require('./routes/polls');
 
 const app = express();      //express app is always express, that is why it is const
                             //we change only middlewares
@@ -37,42 +35,7 @@ app.use((req, res, next) => {
 });
 
 
-//------------------------------------ move to routes/polls ---------------
-
-app.post('/polls', (req, res, next) => {
-    console.log('Received from frontend');
-    console.log(req.body);
-    const poll = new Poll(req.body);
-
-    // const poll = new Poll({
-    //     name: req.body.name,
-    //     info: req.body.info,
-    //     startDate: req.body.startDate,
-    //     endDate: req.body.endDate,
-    //     questions: [...{
-    //         title: req.body.questions.questionTitle,
-    //         type: req.body.questions.questionType,
-    //         options: [...{
-    //             optTitle: req.body.questions.options
-    //         }]
-    //     }]
-    // });
-
-    console.log('Model for base');
-    console.log(poll);
-
-    poll.save().then(() => {
-        res.status(200).json({
-            message: 'Poll added successfully',
-            //poll: createdPoll.name
-        });
-    });
-});
-
-//------------------------------------------------------------------------------------------
-
-
-
-app.use("/users" , userRoutes);
+app.use("/users", userRoutes);
+app.use("/polls", pollRoutes)
 
 module.exports = app;

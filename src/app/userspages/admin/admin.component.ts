@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { User } from 'src/app/signup/usermodel';
 import { UserService } from '../user.service';
-import { Subscription } from 'rxjs';
-import { NodeInjectorFactory } from '@angular/core/src/render3/interfaces/injector';
+import { SignupService } from 'src/app/signup/signup.service';
 
 
 @Component({
@@ -14,7 +13,7 @@ export class AdminComponent implements OnInit {
 
   users: User[] = [];
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private signupService: SignupService) { }
 
   ngOnInit() {
     this.getUsers();
@@ -48,5 +47,9 @@ export class AdminComponent implements OnInit {
     this.userService.deleteUser(id);
   }
 
+
+  logout() {
+    this.signupService.logout();
+  }
 
 }

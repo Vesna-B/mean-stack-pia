@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { CreateService } from '../create.service';
 import { Question } from '../question';
 
@@ -16,10 +16,11 @@ export class CreatepollComponent implements OnInit {
 
   ngOnInit() {
     this.questionForm = this.formBuilder.group({
-      name: [''],
-      info: [''],
-      startDate: [Date],
-      endDate: [Date],
+      author: [localStorage.getItem('currentUser')],
+      name: ['', Validators.required],
+      info: ['', Validators.required],
+      startDate: [Date, Validators.required],
+      endDate: [Date, Validators.required],
       questions: this.formBuilder.array([
         this.initQuestion()
       ])
@@ -74,10 +75,13 @@ export class CreatepollComponent implements OnInit {
     optionArray.removeAt(j);
   }
 
-  
+
   submit() {
     console.log('This is from component');
     console.log(this.questionForm.value);
+
+    console.log(localStorage.getItem('currentUser'));
+    
     this.createService.createPoll(this.questionForm.value);
   }
 

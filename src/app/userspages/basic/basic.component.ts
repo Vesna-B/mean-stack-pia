@@ -13,6 +13,8 @@ export class BasicComponent implements OnInit {
   ngOnInit() {
   }
 
-  
+  getPolls() {
+    //this.createService.getPolls();
+  }
 
 }

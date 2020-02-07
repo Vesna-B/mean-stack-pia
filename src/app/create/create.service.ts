@@ -20,4 +20,11 @@ export class CreateService {
 
   }
 
+
+  //move to other service
+  
+  // getPolls() {
+  //   this.http.get<{ message: string }>('http://localhost:3000/polls').subscribe(res => console.log(res.message));
+  // }
+
 }

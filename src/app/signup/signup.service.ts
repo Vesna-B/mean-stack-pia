@@ -25,17 +25,26 @@ export class SignupService {
     this.http.post<{username: string, type: string, approved: string, message: string}>('http://localhost:3000/users/login', {username, password})
       .subscribe(response => {
         if (response.type == 'admin') {
+          localStorage.setItem('currentUser', response.username);
           this.router.navigate(['admin']);
         }
         if (response.type == 'author' && response.approved == 'approved') {
+          localStorage.setItem('currentUser', response.username);
           this.router.navigate(['author']);
         }
         if (response.type == 'basic' && response.approved == 'approved') {
+          localStorage.setItem('currentUser', response.username);
           this.router.navigate(['basic']);
         }
         //this.loginMsg = response.message;
         return response.message;
       });
+  }
+
+
+  logout() {
+    localStorage.removeItem('currentUser');
+    this.router.navigate(['login']);
   }
 
 }

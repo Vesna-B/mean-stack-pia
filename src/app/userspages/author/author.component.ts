@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SignupService } from 'src/app/signup/signup.service';
 
 @Component({
   selector: 'app-author',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AuthorComponent implements OnInit {
 
-  constructor() { }
+  constructor(private signupService: SignupService) { }
 
   ngOnInit() {
   }
+
+
+  logout() {
+    this.signupService.logout();
+  }
+
 
 }
