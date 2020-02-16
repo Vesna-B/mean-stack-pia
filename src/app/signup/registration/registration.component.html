@@ -1,0 +1,70 @@
+<mat-card class="example-card">
+  <form #regForm="ngForm" (ngSubmit)="register()">
+    <h3 class="regTitle">REGISTRACIJA</h3>
+
+    <mat-form-field>
+      <input #nameTag='ngModel' matInput placeholder="Ime" name="name" [(ngModel)]="name" required />
+      <mat-error *ngIf="regForm.submitted && nameTag.invalid">Ovo polje je obavezno</mat-error>
+    </mat-form-field>
+    
+
+    <mat-form-field>
+      <input #surnameTag='ngModel' matInput placeholder="Prezime" name="surname" [(ngModel)]="surname" required />
+      <mat-error *ngIf="regForm.submitted && surnameTag.invalid">Ovo polje je obavezno</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input #usernameTag='ngModel' matInput placeholder="Korisničko ime" name="username" [(ngModel)]="username" required />
+      <mat-error *ngIf="regForm.submitted && usernameTag.invalid">Ovo polje je obavezno</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input #passTag='ngModel' matInput type="password" placeholder="Lozinka" name="passwod" [(ngModel)]="password" required 
+              pattern="^(?=.*[A-Z])(?=.*\d)(?=.*\W)[a-zA-Z].{7,}$"/>
+      <mat-error *ngIf="regForm.submitted && passTag.invalid">
+        <span *ngIf="passTag.errors.pattern" class="alert">Lozinka mora sadržati minimum 1 veliko slovo, 1 broj, 1 specijalni karakter, mora početi slovom i mora biti dužine 8 karaktera</span>
+        <span *ngIf="!passTag.errors.pattern">Ovo polje je obavezno!</span> 
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input #repPassTag='ngModel' matInput type="password" placeholder="Potvrda lozinke" name="repeatPasswod" [(ngModel)]="repeatPassword" required /> 
+      <label *ngIf="repPassTag.value != passTag.value" class="alert">Ovo polje mora biti isto kao i prethodno!</label>
+      <mat-error *ngIf="regForm.submitted && repPassTag.invalid">Ovo polje je obavezno!</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input #dateTag='ngModel' matInput [matDatepicker]="picker" placeholder="Datum rođenja" name="date" [(ngModel)]="dateOfBirth" required >
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      <mat-error *ngIf="regForm.submitted && dateTag.invalid">Ovo polje je obavezno</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input #placeTag='ngModel' matInput placeholder="Mesto rođenja" name="place" [(ngModel)]="placeOfBirth" required />
+      <mat-error *ngIf="regForm.submitted && placeTag.invalid">Ovo polje je obavezno</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input #identTag='ngModel' matInput placeholder="JMBG" name="ident" [(ngModel)]="identNum" required />
+      <mat-error *ngIf="regForm.submitted && identTag.invalid">Ovo polje je obavezno</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input #phoneTag='ngModel' matInput placeholder="Kontakt telefon" name="phone" [(ngModel)]="phone" required />
+      <mat-error *ngIf="regForm.submitted && phoneTag.invalid">Ovo polje je obavezno</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input #emailTag='ngModel' matInput type="email" placeholder="Email" name="email" [(ngModel)]="email" required />
+      <mat-error *ngIf="regForm.submitted && emailTag.invalid">Ovo polje je obavezno</mat-error>
+    </mat-form-field>
+
+    <button mat-flat-button type="submit" color="primary">Registruj se</button>
+  </form>
+
+  <br />
+    <div>
+      Ako već imate nalog, idite na stranicu <a routerLink="/login">login</a>
+    </div>
+</mat-card>

@@ -1,0 +1,97 @@
+<div class="formDiv">
+  <form [formGroup]="questionForm" (ngSubmit)="submit()">
+    <mat-card class="infoDiv">
+      <div class="titleDiv">
+        <h2>Forma za kreiranje testa</h2>
+      </div>
+      <table>
+          <tr>
+              <td>Naziv testa</td>
+              <td>
+                  <mat-form-field>
+                      <input matInput formControlName="name" required>
+                  </mat-form-field>
+              </td>
+          </tr>
+          <tr>
+              <td>Osnovne informacije</td>
+              <td>
+                  <mat-form-field>
+                      <textarea matInput formControlName="info" required></textarea>
+                  </mat-form-field>
+              </td>
+          </tr>
+          <tr>
+              <td>Datum od kada se može rešavati test</td>
+              <td>
+                  <mat-form-field>
+                      <input matInput formControlName="startDate" [matDatepicker]="dp1" disabled required>
+                      <mat-datepicker-toggle matSuffix [for]="dp1"></mat-datepicker-toggle>
+                      <mat-datepicker #dp1 disabled="false"></mat-datepicker>
+                  </mat-form-field>
+              </td>
+          </tr>
+          <tr>
+              <td>Datum do kada se može rešiti test </td>
+              <td>
+                  <mat-form-field>
+                      <input matInput formControlName="endDate" [matDatepicker]="dp2" disabled required>
+                      <mat-datepicker-toggle matSuffix [for]="dp2"></mat-datepicker-toggle>
+                      <mat-datepicker #dp2 disabled="false"></mat-datepicker>
+                  </mat-form-field>
+              </td>
+          </tr>
+          <tr>
+            <td>Trajanje testa u minutima (maksimalno 3 minuta)</td>
+            <td>
+                <mat-form-field>
+                    <input matInput type="number" formControlName="duration">
+                </mat-form-field>
+            </td>
+          </tr>
+      </table>
+    </mat-card>
+
+    <div formArrayName="questions">
+      <mat-card [formGroupName]="i" *ngFor="let question of getQuestions(questionForm); let i = index">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Pitanje</mat-label>
+          <textarea matInput formControlName="questionTitle" required></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="selectField">
+          <mat-label>Tip pitanja</mat-label>
+          <mat-select formControlName="questionType" required>
+            <mat-option></mat-option>
+            <mat-option>Unos numeričke vrednosti</mat-option>
+            <mat-option>Unos kratkog teksta</mat-option>
+            <mat-option>Izbor jednog od više ponuđenih odgovora</mat-option>
+            <mat-option>Izbor više od više ponuđenih odgovora</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div formArrayName="options">
+          <div [formGroupName]="j" *ngFor="let option of getOptions(question); let j = index">
+            <mat-form-field class="optionField" appearance="outline">
+              <mat-label>Ponuđeni odgovor</mat-label>
+              <input matInput formControlName="optionTitle">
+            </mat-form-field>
+            &nbsp;
+            <button type="button" mat-flat-button (click)="removeOption(i, j)">Izbriši opciju</button>
+          </div>
+        </div>
+        <button type="button" mat-flat-button color="primary" (click)="addOption(i)">Dodaj ponuđeni odgovor</button> &nbsp;&nbsp;
+        <button type="button" mat-flat-button color="warn" (click)="removeQuestion(i)">Izbriši pitanje</button>
+      </mat-card>
+    </div>
+
+    <button class="addBtnDiv" type="button" mat-flat-button color="accent" (click)="addQuestion()">Dodaj pitanje</button> &nbsp;&nbsp; 
+    <button type="submit" mat-flat-button color="accent">Sačuvaj</button>
+  </form>
+</div>
+
+
+
+
+

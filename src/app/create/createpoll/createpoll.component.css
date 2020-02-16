@@ -1,0 +1,41 @@
+.formDiv {
+    margin-bottom: 2%;
+    margin-top: 2%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.titleDiv {
+    text-align: center
+}
+
+.infoDiv {
+    background-color: lightgoldenrodyellow
+}
+
+
+.mat-card {
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+
+.mat-form-field {
+    width: 100%;
+}
+
+.deleteBtn {
+    margin-left: 95%
+}
+
+.optionField {
+    width: 90%;
+}
+
+.selectField {
+    width: 25%;
+}
+
+.addBtnDiv {
+    margin-top: 2%;
+    background-color: goldenrod;
+}

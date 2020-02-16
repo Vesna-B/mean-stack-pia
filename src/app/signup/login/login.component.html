@@ -1,0 +1,17 @@
+<mat-card>
+  <form #loginForm="ngForm" (ngSubmit)="login()" >
+    <h3 class="loginTitle">LOGIN STRANICA</h3>
+    <mat-form-field>
+      <input matInput type="text" placeholder="Korisničko ime" name="username" [(ngModel)]="username" required/>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="password" placeholder="Lozinka" name="password" [(ngModel)]="password" required />
+    </mat-form-field>
+    <button mat-flat-button type="submit" color="primary">Uloguj se</button>
+  </form>
+  
+  <br />
+  <div>
+    Ako nemate nalog, možete ga napraviti na stranici <a routerLink="/registration">registracija</a>
+  </div>
+</mat-card>

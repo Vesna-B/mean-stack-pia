@@ -1,0 +1,15 @@
+<div class="divClass">
+    <h1>Ispitanik stranica</h1>
+</div>
+<div class="logoutClass">
+    <button mat-flat-button type="button" (click)="logout()">Izloguj se</button>
+</div>
+
+
+<mat-card *ngFor="let poll of polls">
+    <p>Naziv ankete: {{poll.name}}</p>
+    <p>Osnovne informacije o anketi: {{poll.info}}</p>
+    <!-- <p>Period otvorenosti ankete: {{poll.startDate}} - {{poll.endDate}}</p> -->
+    <button mat-flat-button color="primary" type="button" (click)="fillPoll(poll)">Popuni anketu</button>
+</mat-card>
+
