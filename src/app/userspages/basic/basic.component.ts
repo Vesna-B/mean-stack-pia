@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AnswerService } from 'src/app/answer/answer.service';
 import { Poll } from 'src/app/answer/poll';
 import { SignupService } from 'src/app/signup/signup.service';
+import { Test } from 'src/app/answer/test';
 
 @Component({
   selector: 'app-basic',
@@ -11,11 +12,13 @@ import { SignupService } from 'src/app/signup/signup.service';
 export class BasicComponent implements OnInit {
 
   polls: Poll[] = [];
+  tests: Test[] = [];
 
   constructor(private anwserService: AnswerService, private signupService: SignupService) { }
 
   ngOnInit() {
     this.getPolls();
+    this.getTests();
   }
 
   getPolls() {
@@ -29,6 +32,14 @@ export class BasicComponent implements OnInit {
   fillPoll(poll) {
     let fetchedPoll = this.polls.find(({ _id }) => _id === poll._id);
     this.anwserService.fillPoll(fetchedPoll);  
+  }
+
+  getTests() {
+    this.anwserService.getTests()
+    .subscribe(responseData => {
+      this.tests = responseData.tests;
+      console.log(this.tests);
+    });
   }
 
   logout() {

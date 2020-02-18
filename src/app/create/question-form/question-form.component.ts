@@ -23,7 +23,7 @@ export class QuestionFormComponent implements OnInit {
   initQuestion() {
     return this.formBuilder.group({
       questionTitle: [],
-      questionType: [],
+      answerType: [],
       options: new FormArray([
         this.initOptions()
       ])

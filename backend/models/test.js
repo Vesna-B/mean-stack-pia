@@ -7,13 +7,14 @@ const testSchema = mongoose.Schema({
     startDate: { type: Date },
     endDate: { type: Date },
     duration: { type: Number},
-    questions: [{
-        title: { type: String },
-        type: { type: String },
-        options: [{
-            optTitle: { type: String}
-        }]
-    }]
+    questions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Question' }]
+    // questions: [{
+    //     title: { type: String },
+    //     type: { type: String },
+    //     options: [{
+    //         optTitle: { type: String}
+    //     }]
+    // }]
 });
 
 

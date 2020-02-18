@@ -24,6 +24,7 @@ router.post("", (req, res, next) => {
 
 router.get("", (req, res, next) => {
     Poll.find().then(fetchedPolls => {
+        console.log('Fetched polls');
         console.log(fetchedPolls);
         res.status(200).json({
             message: 'Polls fetched successfully',

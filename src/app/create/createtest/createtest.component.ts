@@ -30,7 +30,7 @@ export class CreatetestComponent implements OnInit {
   initQuestion() {
     return this.formBuilder.group({
       questionTitle: [],
-      questionType: [],
+      answerType: [],
       options: new FormArray([
         this.initOptions()
       ])
@@ -77,9 +77,16 @@ export class CreatetestComponent implements OnInit {
 
   submit() {
     console.log('This is from component');
-    console.log(this.questionForm.value);
+    //console.log(this.questionForm.value);
 
-    console.log(localStorage.getItem('currentUser'));
+    //console.log(localStorage.getItem('currentUser'));
+
+    this.questionForm.value.questions.forEach(question => {
+      console.log(question.questionTitle);
+      console.log(question.answerType);
+
+    });
+   
     
     this.createService.createTest(this.questionForm.value);
   }

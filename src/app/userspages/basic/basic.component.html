@@ -13,3 +13,13 @@
     <button mat-flat-button color="primary" type="button" (click)="fillPoll(poll)">Popuni anketu</button>
 </mat-card>
 
+<mat-card *ngFor="let test of tests">
+    <p>Naziv ankete: {{test.name}}</p>
+    <div *ngFor="let question of test.questions">
+        <p>{{question.questionTitle}}</p>
+        <div *ngFor="let option of question.options">
+            {{option.title}}
+        </div>
+    </div>
+</mat-card>
+
