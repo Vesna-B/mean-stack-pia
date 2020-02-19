@@ -1,4 +1,5 @@
 export class Question {
+    id: string;
     questionTitle: string;
     // type: string;
     // options: Options[];

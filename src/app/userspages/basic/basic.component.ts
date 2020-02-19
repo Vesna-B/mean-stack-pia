@@ -25,20 +25,22 @@ export class BasicComponent implements OnInit {
     this.anwserService.getPolls()
       .subscribe(responseData => {
         this.polls = responseData.polls;
-        console.log(this.polls);
+        //console.log(this.polls);
       });
   }
 
   fillPoll(poll) {
+    //console.log(this.polls);
     let fetchedPoll = this.polls.find(({ _id }) => _id === poll._id);
+    //console.log(fetchedPoll);
     this.anwserService.fillPoll(fetchedPoll);  
   }
 
   getTests() {
     this.anwserService.getTests()
     .subscribe(responseData => {
-      this.tests = responseData.tests;
-      console.log(this.tests);
+      //this.tests = responseData.tests;
+      //console.log(this.tests);
     });
   }
 

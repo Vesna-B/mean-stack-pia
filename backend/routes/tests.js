@@ -52,7 +52,7 @@ router.get("", (req, res, next) => {
     //     });
     // });
 
-    Test.find().populate('questions').then(result => console.log(result)).catch(error => console.log(error));
+    //Test.find().populate('questions').then(result => console.log(result)).catch(error => console.log(error));
 });
 
 

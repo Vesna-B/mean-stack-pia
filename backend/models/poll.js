@@ -6,7 +6,7 @@ const pollSchema = mongoose.Schema({
     info: { type: String, required: true },
     startDate: { type: Date },
     endDate: { type: Date },
-    questions: { type: Array }
+    questions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'PollQuestion' }]
 });
 
 

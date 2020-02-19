@@ -7,5 +7,16 @@ export class Poll {
     info: string;
     startDate: Date;
     endDate: Date;
-    questions: Question[]
+    questions: string[]     //array of question ids
+}
+
+
+export class PollToAnswer {
+    _id: string;
+    author: string;
+    name: string;
+    info: string;
+    startDate: Date;
+    endDate: Date;
+    questions: Question[];
 }

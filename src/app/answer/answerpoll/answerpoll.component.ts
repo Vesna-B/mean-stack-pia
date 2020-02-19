@@ -10,7 +10,7 @@ import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 })
 export class AnswerpollComponent implements OnInit {
 
-  poll: Poll;
+  poll = null;
   questionForm: FormGroup;
 
   constructor(private answerService: AnswerService, private formBuilder: FormBuilder) { }
@@ -18,7 +18,6 @@ export class AnswerpollComponent implements OnInit {
 
   ngOnInit() {
     this.poll = this.answerService.pollToAnswer;
-
   }
 
 
