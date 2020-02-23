@@ -19,6 +19,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
 
 import { AdminComponent } from './userspages/admin/admin.component';
 import { AuthorComponent } from './userspages/author/author.component';
@@ -57,7 +58,8 @@ import { AnswertestComponent } from './answer/answertest/answertest.component';
     HttpClientModule,
     ReactiveFormsModule,
     MatSelectModule,
-    MatTableModule
+    MatTableModule,
+    MatSortModule
   ],
   providers: [],
   bootstrap: [AppComponent]

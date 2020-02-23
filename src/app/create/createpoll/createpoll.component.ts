@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { CreateService } from '../create.service';
 import { Question } from '../question';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-createpoll',
@@ -10,7 +11,11 @@ import { Question } from '../question';
 })
 export class CreatepollComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private createService: CreateService) { }
+  constructor(
+    private formBuilder: FormBuilder, 
+    private createService: CreateService, 
+    private router: Router
+  ) {}
 
   questionForm: FormGroup;
 
@@ -77,8 +82,11 @@ export class CreatepollComponent implements OnInit {
 
 
   submit() {
-    
     this.createService.createPoll(this.questionForm.value);
+  }
+
+  quit() {
+    this.router.navigate(['author']);
   }
 
 }

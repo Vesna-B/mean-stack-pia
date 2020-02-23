@@ -23,31 +23,37 @@ export class AnswerService {
   }
 
   fillPoll(poll: Poll) {
-    let questions = [];
+    let condition = 0;
+    const questions = new Array<{ id: string, questionTitle: string }>();
+
     for (let i = 0; i < poll.questions.length; i++) {
-      let q = {
+      const q = {
         id: poll.questions[i],
         questionTitle: null
       }
       this.getPollQuestion(poll.questions[i]).subscribe(response => {
         q.questionTitle = response.questionTitle;
-        questions.push(q);
-      })
-    }
+        questions[i] = q;
+        condition = condition + 1;
 
-    this.pollToAnswer = {
-      _id: poll._id,
-      author: poll.author,
-      name: poll.name,
-      info: poll.info,
-      startDate: poll.startDate,
-      endDate: poll.endDate,
-      questions: questions
+        if (condition == poll.questions.length) {
+          this.pollToAnswer = {
+            _id: poll._id,
+            author: poll.author,
+            name: poll.name,
+            info: poll.info,
+            startDate: poll.startDate,
+            endDate: poll.endDate,
+            questions: questions
+          }
+
+          this.router.navigate(['/answerpoll']);
+        }
+
+      });
+
     }
-    console.log(this.pollToAnswer)
-    this.router.navigate(['/answerpoll']);
   }
-
 
 
   getTests(): Observable<{ message: string, tests: any }> {
@@ -57,6 +63,11 @@ export class AnswerService {
 
   getPollQuestion(id: string) {
     return this.http.post<{ questionTitle: string }>('http://localhost:3000/polls/questions', {id})
+  }
+
+
+  saveFilledPoll(poll) {
+    return this.http.post<{ message: string }>('http://localhost:3000/polls/answers', poll)
   }
 
 }

@@ -15,3 +15,12 @@
     margin-left: 80%;
     margin-right: 2%;
 }
+
+table {
+    margin: 1%;
+    width: 100%;
+}
+  
+th.mat-sort-header-sorted {
+    color: black;
+}

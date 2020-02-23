@@ -17,7 +17,7 @@ export class CreateService {
     this.http.post<{ message: string }>('http://localhost:3000/polls', data)
       .subscribe(res => {
         console.log(res.message);
-        //this.router.navigate(['author']);
+        this.router.navigate(['author']);
       });
   }
 
