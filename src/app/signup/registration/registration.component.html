@@ -46,8 +46,11 @@
     </mat-form-field>
 
     <mat-form-field>
-      <input #identTag='ngModel' matInput placeholder="JMBG" name="ident" [(ngModel)]="identNum" required />
-      <mat-error *ngIf="regForm.submitted && identTag.invalid">Ovo polje je obavezno</mat-error>
+      <input #identTag='ngModel' matInput placeholder="JMBG" name="ident" [(ngModel)]="identNum" required minlength="13" maxlength="13"/>
+      <mat-error *ngIf="regForm.submitted && identTag.invalid">
+        <span *ngIf="identTag.errors.minlength || identTag.errors.maxlength">JMBG mora biti dužine 13 cifara</span>
+        <span *ngIf="!identTag.errors.minlength && !identTag.errors.maxlength">Ovo polje je obavezno</span>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>

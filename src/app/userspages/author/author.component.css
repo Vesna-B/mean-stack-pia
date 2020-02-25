@@ -11,7 +11,10 @@
     text-align: center
 }
 
-.logoutClass {
-    margin-left: 80%;
-    margin-right: 2%;
+.btnClass {
+    margin: 2%;
+}
+
+.logoutBtn {
+    float: right;
 }

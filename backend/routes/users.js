@@ -17,10 +17,14 @@ router.post("", (req, res, next) => {
         phone: req.body.phone,
         email: req.body.email,
         userType: req.body.userType,
-        approved: req.body.approved
+        approved: req.body.approved,
+        answeredPolls: [],
+        answeredTests: []
     });
     console.log('This information is from app.js');
     console.log(user);
+    console.log(user.answeredPolls);
+    console.log(user.answeredTests);
     user.save().then(createdUser => {
         res.status(200).json({
             message: 'User added successfully',
@@ -96,6 +100,21 @@ router.put("", (req, res, next) => {
         })
         .catch(err => console.log(err));
 });
+
+
+router.put("/pollanswers", (req, res, next) => {
+    User.findOne({ username: req.body.user })
+        .then(fetchedUser => {
+            fetchedUser.answeredPolls.push({ pollId: req.body.pollId, answerId: req.body.answerId });
+            fetchedUser.save();
+            res.status(200).json({
+                user: fetchedUser,
+                message: "Poll_answer_id added to user's answeredPoll array"
+            });
+        })
+        .catch(err => console.log(err));
+});
+
 
 
 

@@ -24,14 +24,17 @@ export class SignupService {
       .subscribe(response => {
         if (response.type == 'admin') {
           localStorage.setItem('currentUser', response.username);
+          localStorage.setItem('currentUserType', response.type);
           this.router.navigate(['admin']);
         }
         if (response.type == 'author' && response.approved == 'approved') {
           localStorage.setItem('currentUser', response.username);
+          localStorage.setItem('currentUserType', response.type);
           this.router.navigate(['author']);
         }
         if (response.type == 'basic' && response.approved == 'approved') {
           localStorage.setItem('currentUser', response.username);
+          localStorage.setItem('currentUserType', response.type);
           this.router.navigate(['basic']);
         }
         return response.message;
@@ -41,6 +44,7 @@ export class SignupService {
 
   logout() {
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('currentUserType');
     this.router.navigate(['login']);
   }
 

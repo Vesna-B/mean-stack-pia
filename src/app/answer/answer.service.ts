@@ -14,13 +14,14 @@ export class AnswerService {
 
   pollToAnswer: PollToAnswer;
 
-
   constructor(private http: HttpClient, private router: Router) { }
+
 
 
   getPolls(): Observable<{ message: string, polls: Poll[] }> {
     return this.http.get<{ message: string, polls: Poll[] }>('http://localhost:3000/polls')
   }
+
 
   fillPoll(poll: Poll) {
     let condition = 0;
@@ -56,6 +57,7 @@ export class AnswerService {
   }
 
 
+  
   getTests(): Observable<{ message: string, tests: any }> {
     return this.http.get<{ message: string, tests: any }>('http://localhost:3000/tests')
   }
@@ -67,7 +69,7 @@ export class AnswerService {
 
 
   saveFilledPoll(poll) {
-    return this.http.post<{ message: string }>('http://localhost:3000/polls/answers', poll)
+    return this.http.post<{ answerId:string, message: string }>('http://localhost:3000/polls/answers', poll)
   }
 
 }

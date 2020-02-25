@@ -37,12 +37,16 @@ export class UserService {
   }
 
 
-
   deleteUser(id) {
     this.http.delete("http://localhost:3000/users/" + id)
       .subscribe(() => {
         console.log("Deleted");
       });
+  }
+
+
+  addPollAnswer(pollId: string, answerId: string, user: string) {
+    return this.http.put<{ user: any, message: string }>("http://localhost:3000/users/pollanswers", {pollId, answerId, user})
   }
 
 

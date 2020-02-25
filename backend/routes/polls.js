@@ -2,12 +2,12 @@ const express = require('express');
 
 const Poll = require('../models/poll');
 const PollQuestion = require('../models/pollQuestion');
+const AnsweredPoll = require('../models/answeredPoll');
 
 const router = express.Router();
 
 
-router.post("", (req, res, next) => {
-   
+router.post("", (req, res, next) => { 
     const poll = new Poll({ 
         author: req.body.author,
         name: req.body.name,
@@ -22,13 +22,9 @@ router.post("", (req, res, next) => {
             title: question.questionTitle
         });
         poll.questions.push(q);
-        //console.log('Question');
-        //console.log(q);
         q.save();
     });
 
-    //console.log('Entire poll')
-    //console.log(poll);
     poll.save().then(() => {
         console.log('Poll added successfully')
         res.status(200).json({
@@ -41,8 +37,6 @@ router.post("", (req, res, next) => {
 
 router.get("", (req, res, next) => {
     Poll.find().then(fetchedPolls => {
-        //console.log('Fetched polls');
-        //console.log(fetchedPolls);
         res.status(200).json({
             message: 'Polls fetched successfully',
             polls: fetchedPolls
@@ -53,12 +47,21 @@ router.get("", (req, res, next) => {
 
 router.post("/questions", (req, res, next) => {
     PollQuestion.findOne({ _id: req.body.id }).then(fetchedQuestion => {
-        //console.log(fetchedQuestion);
-        //console.log(fetchedQuestion.title);
         res.status(200).json({
             questionTitle: fetchedQuestion.title
         });
     });
+});
+
+
+router.post("/answers", (req, res, next) => {
+    const answeredPoll = new AnsweredPoll(req.body);
+    answeredPoll.save().then(response => {
+        res.status(200).json({
+            answerId: response._id,
+            message: 'Answer added successfully'
+        })
+    })
 });
 
 

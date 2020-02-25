@@ -41,9 +41,12 @@ export class RegistrationComponent implements OnInit {
     this.user.email = this.email;
     this.user.userType = 'basic';
     this.user.approved = 'waiting';
+    this.user.answeredPolls = [];
+    this.user.answeredTests = [];
     
     this.signupService.register(this.user);
-
+    console.log(this.user);
+    
   }
 
 }
