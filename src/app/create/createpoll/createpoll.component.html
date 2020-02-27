@@ -41,6 +41,19 @@
                   </mat-form-field>
               </td>
           </tr>
+          <tr>
+            <td>Tip ankete</td>
+            <td>
+              <mat-form-field>
+                <mat-label>Izaberite tip</mat-label>
+                <mat-select formControlName="pollType" required>
+                  <mat-option></mat-option>
+                  <mat-option value="anonymous">Anonimna</mat-option>
+                  <mat-option value="personal">Personalizovana</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr>
       </table>
     </mat-card>
 

@@ -46,28 +46,40 @@ router.get("", (req, res, next) => {
 router.post("/login", (req, res, next) => {
     User.findOne({ username: req.body.username })
         .then(user => {
-            if (!user) {
+            if (user == null) {
                 return res.status(400).json({
+                    user: null,
                     message: "Korisnik nije pronađen"
                 });
             }
             if (user.password != req.body.password) {
                 return res.status(401).json({
+                    user: null,
                     message: "Pogrešna lozinka"
                 });
             }
-            if (!user.approved) {
+            if (user.approved != 'approved') {
                 return res.status(403).json({
+                    user: null,
                     message: "Vaš zahtev za registraciju još uvek nije prihvaćen"
                 });
             }
             return res.status(200).json({
-                username: user.username,
-                type: user.userType,
-                approved: user.approved,
-                message: ''
+                user: user,
+                message: 'Uspesno ste se ulogovali'
             });
         });  
+});
+
+
+router.post("/user", (req, res, next) => {
+    User.findOne({ username: req.body.username })
+        .then(user => {
+            res.status(200).json({
+                user: user
+            });
+        })
+        .catch(err => console.log(err));  
 });
 
 

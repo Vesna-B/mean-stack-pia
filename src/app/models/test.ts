@@ -1,4 +1,4 @@
-import { TestQuestion } from '../create/question';
+import { TestQuestion } from './question';
 
 export class Test {
     _id: string;

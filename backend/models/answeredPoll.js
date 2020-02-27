@@ -2,7 +2,9 @@ const mongoose = require('mongoose');
 
 const answeredPollSchema = mongoose.Schema({
     pollId: { type: mongoose.Schema.Types.ObjectId, ref: 'Poll' },
-    user: { type: String, required: true },
+    userFirstName: { type: String },
+    userLastName: { type: String },
+    userDateOfBirth: { type: Date },
     answers: { type: Array }
 });
 

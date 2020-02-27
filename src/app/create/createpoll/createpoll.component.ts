@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { CreateService } from '../create.service';
-import { Question } from '../question';
 import { Router } from '@angular/router';
 
 @Component({
@@ -26,6 +25,7 @@ export class CreatepollComponent implements OnInit {
       info: ['', Validators.required],
       startDate: [Date, Validators.required],
       endDate: [Date, Validators.required],
+      pollType: ['', Validators.required],
       questions: this.formBuilder.array([
         this.initQuestion()
       ])
@@ -43,11 +43,11 @@ export class CreatepollComponent implements OnInit {
     });
   }
 
-  initOptions() {
-    return this.formBuilder.group({
-      optionTitle: ['']
-    });
-  }
+  // initOptions() {
+  //   return this.formBuilder.group({
+  //     optionTitle: ['']
+  //   });
+  // }
 
 
   addQuestion() {
@@ -55,19 +55,19 @@ export class CreatepollComponent implements OnInit {
     questionArray.push(this.initQuestion());
   }
 
-  addOption(i) {
-    const optionArray = <FormArray>this.questionForm.get(['questions', i, 'options']);
-    optionArray.push(this.initOptions());
-  }
+  // addOption(i) {
+  //   const optionArray = <FormArray>this.questionForm.get(['questions', i, 'options']);
+  //   optionArray.push(this.initOptions());
+  // }
 
 
   getQuestions(form) {
     return form.controls.questions.controls;
   }
 
-  getOptions(question) {
-    return question.controls.options.controls;
-  }
+  // getOptions(question) {
+  //   return question.controls.options.controls;
+  // }
 
 
   removeQuestion(i) {
@@ -75,10 +75,10 @@ export class CreatepollComponent implements OnInit {
     questionArray.removeAt(i);
   }
 
-  removeOption(i, j) {
-    const optionArray = <FormArray>this.questionForm.get(['questions', i, 'options']);
-    optionArray.removeAt(j);
-  }
+  // removeOption(i, j) {
+  //   const optionArray = <FormArray>this.questionForm.get(['questions', i, 'options']);
+  //   optionArray.removeAt(j);
+  // }
 
 
   submit() {

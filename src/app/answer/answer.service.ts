@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
-import { Poll, PollToAnswer } from './poll';
 import { Router } from '@angular/router';
-import { Test } from './test';
-import { Question } from '../create/question';
+import { Observable } from 'rxjs';
+
+import { Poll, PollToAnswer } from '../models/poll';
+import { Test } from '../models/test';
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +44,7 @@ export class AnswerService {
             info: poll.info,
             startDate: poll.startDate,
             endDate: poll.endDate,
+            pollType: poll.pollType,
             questions: questions
           }
 

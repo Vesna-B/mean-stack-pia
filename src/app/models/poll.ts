@@ -1,4 +1,4 @@
-import { Question, Options } from '../create/question';
+import { PollQuestion, Options } from './question';
 
 export class Poll {
     _id: string;
@@ -7,6 +7,7 @@ export class Poll {
     info: string;
     startDate: Date;
     endDate: Date;
+    pollType: string;
     questions: string[]     //array of question ids
 }
 
@@ -18,5 +19,6 @@ export class PollToAnswer {
     info: string;
     startDate: Date;
     endDate: Date;
-    questions: Question[];
+    pollType: string;
+    questions: PollQuestion[];
 }

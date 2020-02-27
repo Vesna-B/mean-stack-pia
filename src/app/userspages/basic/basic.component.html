@@ -15,18 +15,27 @@
 
         <ng-container matColumnDef="startDate">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Datum početka </th>
-            <td mat-cell *matCellDef="let poll"> {{poll.startDate.getDate()}}. {{poll.startDate.getMonth()}}. {{poll.startDate.getFullYear()}} </td>
+            <td mat-cell *matCellDef="let poll"> {{poll.startDate.getDate()}}. {{(poll.startDate.getMonth() + 1)}}. {{poll.startDate.getFullYear()}} </td>
             </ng-container>
 
         <ng-container matColumnDef="endDate">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Datum kraja </th>
-            <td mat-cell *matCellDef="let poll"> {{poll.endDate.getDate()}}. {{poll.endDate.getMonth()}}. {{poll.endDate.getFullYear()}} </td>
+            <td mat-cell *matCellDef="let poll"> {{poll.endDate.getDate()}}. {{(poll.endDate.getMonth() + 1)}}. {{poll.endDate.getFullYear()}} </td>
         </ng-container>
 
         <ng-container matColumnDef="fill">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
-            <td mat-cell *matCellDef="let poll">  
-                <button mat-flat-button color="accent" type="button" (click)="fillPoll(poll)">Popuni anketu</button>
+            <td mat-cell *matCellDef="let poll"> 
+                <span *ngIf="isPollFilledByThisUser(poll)">
+                    <!-- <label>Anketa je vec popunjena.</label> -->
+                    <button mat-button color="primary" type="button" (click)="reviewPoll(poll)">Pogledaj svoj odgovor</button>
+                </span> 
+                <span *ngIf="!isPollFilledByThisUser(poll) && (poll.startDate > today || poll.endDate < today)">
+                    <label>Anketa se ne moze popunjavati</label>
+                </span> 
+                <span *ngIf="!isPollFilledByThisUser(poll) && poll.startDate < today && poll.endDate > today">
+                    <button mat-button color="accent" type="button" (click)="fillPoll(poll)">Popuni anketu</button>
+                </span> 
             </td>
         </ng-container>
     
@@ -36,26 +45,4 @@
 </mat-card>
 
 
-
-
-
-
-
-
-<!-- <mat-card *ngFor="let poll of polls">
-    <p>Naziv ankete: {{poll.name}}</p>
-    <p>Osnovne informacije o anketi: {{poll.info}}</p>
-    <p>Period otvorenosti ankete: {{poll.startDate}} - {{poll.endDate}}</p>
-    <button mat-flat-button color="primary" type="button" (click)="fillPoll(poll)">Popuni anketu</button>
-</mat-card> -->
-
-<!-- <mat-card *ngFor="let test of tests">
-    <p>Naziv ankete: {{test.name}}</p>
-    <div *ngFor="let question of test.questions">
-        <p>{{question.questionTitle}}</p>
-        <div *ngFor="let option of question.options">
-            {{option.title}}
-        </div>
-    </div>
-</mat-card> -->
 

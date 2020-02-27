@@ -29,6 +29,8 @@ import { CreatetestComponent } from './create/createtest/createtest.component';
 import { QuestionFormComponent } from './create/question-form/question-form.component';
 import { AnswerpollComponent } from './answer/answerpoll/answerpoll.component';
 import { AnswertestComponent } from './answer/answertest/answertest.component';
+import { ReviewpollComponent } from './review/reviewpoll/reviewpoll.component';
+import { ReviewtestComponent } from './review/reviewtest/reviewtest.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { AnswertestComponent } from './answer/answertest/answertest.component';
     QuestionFormComponent,
     AnswerpollComponent,
     AnswertestComponent,
+    ReviewpollComponent,
+    ReviewtestComponent,
   ],
   imports: [
     BrowserModule,

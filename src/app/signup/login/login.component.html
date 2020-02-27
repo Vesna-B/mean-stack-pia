@@ -9,7 +9,10 @@
     </mat-form-field>
     <button mat-flat-button type="submit" color="primary">Uloguj se</button>
   </form>
-  
+  <br/>
+  <div class="msg" *ngIf="message != '' ">
+    {{ message }}
+  </div>
   <br />
   <div>
     Ako nemate nalog, možete ga napraviti na stranici <a routerLink="/registration">registracija</a>

@@ -14,6 +14,7 @@ router.post("", (req, res, next) => {
         info: req.body.info,
         startDate: req.body.startDate,
         endDate: req.body.endDate,
+        pollType: req.body.pollType
         //questions: //add one by one
     })
 
@@ -64,6 +65,18 @@ router.post("/answers", (req, res, next) => {
     })
 });
 
+
+router.get("/answers/:id", (req, res, next) => {
+    AnsweredPoll.findById({_id: req.params.id})
+        .then(response => {
+            console.log(response);
+            res.status(200).json({
+                answer: response,
+                message: 'Answer fetched'
+            })
+        })
+        .catch(err => console.log(err))
+});
 
 
 module.exports = router;

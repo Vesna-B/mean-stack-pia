@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { User } from '../signup/usermodel';
+import { User } from '../models/usermodel';
 import { Observable, Subject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
@@ -16,6 +16,11 @@ export class UserService {
   getUsers(): Observable<{ users: User[] }> {
     return this.http.get<{ users: User[] }>("http://localhost:3000/users")
       .pipe(tap(response => { this.users = response.users }));
+  }
+
+
+  getUser(username) {
+    return this.http.post<{ user: User }>("http://localhost:3000/users/user", { username })
   }
 
 

@@ -1,13 +1,11 @@
-export class Question {
+export class PollQuestion {
     id: string;
     questionTitle: string;
-    // type: string;
-    // options: Options[];
 }
 
 export class TestQuestion {
     questionTitle: string;
-    //type: string;
+    //correctAnswer: string;
     options: Options[];
 }
 
