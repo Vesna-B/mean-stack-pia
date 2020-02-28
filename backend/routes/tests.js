@@ -1,8 +1,7 @@
 const express = require('express');
 
 const Test = require('../models/test');
-
-const Question = require('../models/question');
+const TestQuestion = require('../models/testQuestion');
 
 const router = express.Router();
 
@@ -19,19 +18,19 @@ router.post("", (req, res, next) => {
     })
 
     req.body.questions.forEach(question => {
-        const q = new Question({
+        const q = new TestQuestion({
             title: question.questionTitle,
-            answerType: question.answerType,
+            points: question.points,
             options: [...question.options]
         });
         test.questions.push(q);
-        console.log('Question');
-        console.log(q);
+        // console.log('Question');
+        // console.log(q);
         q.save();
     });
 
-    console.log('Entire test')
-    console.log(test);
+    // console.log('Entire test')
+    // console.log(test);
     test.save().then(() => {
         res.status(200).json({
             message: 'Test added successfully!'

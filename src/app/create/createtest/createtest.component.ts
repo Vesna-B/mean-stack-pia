@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { CreateService } from '../create.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-createtest',
@@ -9,7 +10,11 @@ import { CreateService } from '../create.service';
 })
 export class CreatetestComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private createService: CreateService) { }
+  constructor(
+    private formBuilder: FormBuilder, 
+    private createService: CreateService,
+    private router: Router
+  ) { }
 
   questionForm: FormGroup;
 
@@ -29,17 +34,18 @@ export class CreatetestComponent implements OnInit {
 
   initQuestion() {
     return this.formBuilder.group({
-      questionTitle: [],
-      answerType: [],
+      questionTitle: [''],
+      points: [Number],
       options: new FormArray([
-        this.initOptions()
+        //this.initOptions()
       ])
     });
   }
 
   initOptions() {
     return this.formBuilder.group({
-      optionTitle: ['']
+      optionTitle: [''],
+      isCorrect: ['']
     });
   }
 
@@ -77,18 +83,14 @@ export class CreatetestComponent implements OnInit {
 
   submit() {
     console.log('This is from component');
-    //console.log(this.questionForm.value);
-
-    //console.log(localStorage.getItem('currentUser'));
-
-    this.questionForm.value.questions.forEach(question => {
-      console.log(question.questionTitle);
-      console.log(question.answerType);
-
-    });
-   
+    console.log(this.questionForm.value);
     
     this.createService.createTest(this.questionForm.value);
+  }
+
+
+  quit() {
+    this.router.navigate(['author']);
   }
 
 }
