@@ -121,12 +121,26 @@ router.put("/pollanswers", (req, res, next) => {
             fetchedUser.save();
             res.status(200).json({
                 user: fetchedUser,
-                message: "Poll_answer_id added to user's answeredPoll array"
+                message: "Poll_answer_id added to user's answeredPolls array"
             });
         })
         .catch(err => console.log(err));
 });
 
+
+router.put("/testanswers", (req, res, next) => {
+    User.findOne({ username: req.body.user })
+        .then(fetchedUser => {
+            fetchedUser.answeredTests.push({ testId: req.body.testId, answerId: req.body.answerId });
+            console.log(fetchedUser);
+            fetchedUser.save();
+            res.status(200).json({
+                user: fetchedUser,
+                message: "Test_answer_id added to user's answeredTests array"
+            });
+        })
+        .catch(err => console.log(err));
+});
 
 
 

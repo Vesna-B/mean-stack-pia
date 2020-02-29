@@ -28,7 +28,6 @@ export class AnswertestComponent implements OnInit {
     for (let i = 0; i < this.test.questions.length; i++) {
       let a = { questionId: this.test.questions[i].id, answerTitle: "", earnedPoints: 0 }
       this.answers.push(a);
-      console.log(this.answers[i])
     }
   }
 
@@ -73,7 +72,14 @@ export class AnswertestComponent implements OnInit {
 
     this.answerService.saveFilledTest(answerForm)
       .subscribe(response => {
-        console.log(response.message)
+        let user = localStorage.getItem('currentUser');
+        this.userService.addTestAnswer(this.test._id, response.answerId, user)
+          .subscribe(response => {
+            console.log(response.message);
+            this.router.navigate(['basic']);
+          }, err => {
+            console.log(err);
+          })
       });
   }
 

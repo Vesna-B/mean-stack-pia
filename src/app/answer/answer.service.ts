@@ -48,12 +48,9 @@ export class AnswerService {
             pollType: poll.pollType,
             questions: questions
           }
-
           this.router.navigate(['/answerpoll']);
         }
-
       });
-
     }
   }
 
@@ -100,9 +97,6 @@ export class AnswerService {
             duration: test.duration,
             questions: questions
           }
-          console.log('Test to answer')
-          console.log(this.testToAnswer)
-
           this.router.navigate(['answertest']);
         }
       })

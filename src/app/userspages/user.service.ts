@@ -55,5 +55,9 @@ export class UserService {
   }
 
 
+  addTestAnswer(testId: string, answerId: string, user: string) {
+    return this.http.put<{ user: any, message: string }>("http://localhost:3000/users/testanswers", {testId, answerId, user})
+  }
+  
 
 }
