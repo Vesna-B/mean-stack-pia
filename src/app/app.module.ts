@@ -20,6 +20,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
+import { MatRadioModule } from '@angular/material/radio';
 
 import { AdminComponent } from './userspages/admin/admin.component';
 import { AuthorComponent } from './userspages/author/author.component';
@@ -63,7 +64,8 @@ import { ReviewtestComponent } from './review/reviewtest/reviewtest.component';
     ReactiveFormsModule,
     MatSelectModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]

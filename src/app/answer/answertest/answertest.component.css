@@ -1,0 +1,48 @@
+.mat-card {
+    margin-bottom: 0.5%;
+    margin-top: 1%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.infoDiv {
+    background-color: rgb(146, 199, 243)
+}
+
+.titleDiv {
+    text-align: center;
+}
+
+.div {
+    margin-bottom: 2%
+}
+
+.mat-form-field {
+    width: 100%;
+    margin-top: 2%
+}
+
+.qDiv {
+    background-color: beige
+}
+
+
+.example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+}
+  
+.example-radio-button {
+    margin: 5px;
+}
+
+
+.btnDiv {
+    margin: 2%;
+}
+
+.quitBtn {
+    float: right;
+    background-color: rgb(146, 199, 243)
+}

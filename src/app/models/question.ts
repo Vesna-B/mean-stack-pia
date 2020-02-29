@@ -3,12 +3,14 @@ export class PollQuestion {
     questionTitle: string;
 }
 
-export class TestQuestion {
-    questionTitle: string;
-    //correctAnswer: string;
-    options: Options[];
-}
+// export class TestQuestion {
+//     id: string;
+//     questionTitle: string;
+//     points: number;
+//     options: Option[];
+// }
 
-export class Options {
-    title: string;
-}
+// export class Option {
+//     optionTitle: string;
+//     isCorrect: string;
+// }

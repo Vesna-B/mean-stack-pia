@@ -2,6 +2,7 @@ const express = require('express');
 
 const Test = require('../models/test');
 const TestQuestion = require('../models/testQuestion');
+const AnsweredTest = require('../models/answeredTest');
 
 const router = express.Router();
 
@@ -16,7 +17,6 @@ router.post("", (req, res, next) => {
         duration: req.body.duration,
         //questions: //add one by one
     })
-
     req.body.questions.forEach(question => {
         const q = new TestQuestion({
             title: question.questionTitle,
@@ -24,34 +24,41 @@ router.post("", (req, res, next) => {
             options: [...question.options]
         });
         test.questions.push(q);
-        // console.log('Question');
-        // console.log(q);
         q.save();
     });
-
-    // console.log('Entire test')
-    // console.log(test);
     test.save().then(() => {
         res.status(200).json({
             message: 'Test added successfully!'
         })
     });
-
 });
 
 
 router.get("", (req, res, next) => {
-    // Test.find().then(fetchedTests => {
-    //     console.log('Fetched tests');
-    //     console.log(fetchedTests);
-    //     //console.log(fetchedTests.test.title)
-    //     res.status(200).json({
-    //         message: 'Tests fetched successfully',
-    //         tests: fetchedTests
-    //     });
-    // });
+    Test.find().then(fetchedTests => {
+        res.status(200).json({
+            message: 'Tests fetched successfully',
+            tests: fetchedTests
+        });
+    });
+});
 
-    //Test.find().populate('questions').then(result => console.log(result)).catch(error => console.log(error));
+
+router.post("/questions", (req, res, next) => {
+    TestQuestion.findOne({ _id: req.body.id }).then(fetchedQuestion => {
+        res.status(200).json(fetchedQuestion);
+    });
+});
+
+
+router.post("/answers", (req, res, next) => {
+    const answeredTest = new AnsweredTest(req.body);
+    answeredTest.save().then(response => {
+        res.status(200).json({
+            answerId: response._id,
+            message: 'Answer added successfully'
+        })
+    })
 });
 
 

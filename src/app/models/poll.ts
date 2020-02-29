@@ -1,4 +1,4 @@
-import { PollQuestion, Options } from './question';
+import { PollQuestion } from './question';
 
 export class Poll {
     _id: string;

@@ -23,11 +23,14 @@ export class BasicComponent implements OnInit {
   currentUser: User = null;
   today: Date;
   
-  displayedColumns: string[] = ['name', 'startDate', 'endDate', 'fill'];
-  dataSource = null;
-
-  @ViewChild(MatSort) sort: MatSort;
+  displayedColumnsPoll: string[] = ['name', 'startDate', 'endDate', 'fill'];
+  displayedColumnsTest: string[] = ['name', 'startDate', 'endDate', 'duration', 'fill'];
+  dataSourcePoll = null;
+  dataSourceTest = null;
   
+  @ViewChild('sortPoll') sortPoll: MatSort;
+  @ViewChild('sortTest') sortTest: MatSort;
+
   constructor(
     private anwserService: AnswerService, 
     private signupService: SignupService,
@@ -40,8 +43,7 @@ export class BasicComponent implements OnInit {
     this.today = new Date();
     this.getUser(user);
     this.getPolls();
-    
-    //this.getTests();
+    this.getTests();
   }
 
 
@@ -54,6 +56,7 @@ export class BasicComponent implements OnInit {
   }
 
 
+
   getPolls() {
     this.anwserService.getPolls()
       .subscribe(responseData => {
@@ -62,8 +65,8 @@ export class BasicComponent implements OnInit {
           poll.startDate = new Date(poll.startDate);
           poll.endDate = new Date(poll.endDate);
         })
-        this.dataSource = new MatTableDataSource(this.polls);
-        this.dataSource.sort = this.sort;
+        this.dataSourcePoll = new MatTableDataSource(this.polls);
+        this.dataSourcePoll.sort = this.sortPoll;
       });
 
   }
@@ -86,13 +89,35 @@ export class BasicComponent implements OnInit {
   }
 
 
+
   getTests() {
     this.anwserService.getTests()
     .subscribe(responseData => {
-      //this.tests = responseData.tests;
-      //console.log(this.tests);
+      this.tests = responseData.tests;
+      this.tests.forEach(test => {
+        test.startDate = new Date(test.startDate);
+        test.endDate = new Date(test.endDate);
+      })
+      this.dataSourceTest = new MatTableDataSource(this.tests);
+      this.dataSourceTest.sort = this.sortTest;
     });
   }
+
+
+  isTestFilledByThisUser(test) {
+
+  }
+
+
+  fillTest(test) {
+    this.anwserService.fillTest(test);
+  }
+
+
+  reviewTest(test) {}
+
+
+
 
   logout() {
     this.signupService.logout();
