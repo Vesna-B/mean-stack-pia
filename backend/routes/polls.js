@@ -69,6 +69,7 @@ router.post("/answers", (req, res, next) => {
 router.get("/answers/:id", (req, res, next) => {
     AnsweredPoll.findById({_id: req.params.id})
         .then(response => {
+            console.log('Fetched poll answer')
             console.log(response);
             res.status(200).json({
                 answer: response,

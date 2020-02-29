@@ -7,10 +7,11 @@
     Anketa je anonimna
   </div>
   <div *ngIf="answeredPoll.userFirstName != '' ">
-    Ispitanik: <h4>{{ answeredPoll.userFirstName }} {{ answeredPoll.userLastName}}</h4><br/>     
-    Datum rođenja: <h4>{{ answeredPoll.userDateOfBirth.getDate() }}. {{ (answeredPoll.userDateOfBirth.getMonth() + 1) }}. {{ answeredPoll.userDateOfBirth.getFullYear() }}</h4>
+    <p>Ispitanik: <span class="userInfo"><b>{{ answeredPoll.userFirstName }} {{ answeredPoll.userLastName}}</b></span></p>     
+    <p>Datum rođenja: <span class="userInfo"><b>{{ answeredPoll.userDateOfBirth.getDate() }}. {{ (answeredPoll.userDateOfBirth.getMonth() + 1) }}. {{ answeredPoll.userDateOfBirth.getFullYear() }}</b></span></p>
   </div>
 </mat-card>
+
 <mat-card>
   <div *ngFor="let answer of answeredPoll.answers">
     <label class="qaLabel">Pitanje:</label><br/>

@@ -76,12 +76,10 @@ export class BasicComponent implements OnInit {
     return this.currentUser.answeredPolls.find(item => item.pollId === poll._id);
   }
 
-
   fillPoll(poll) {
     let fetchedPoll = this.polls.find(({ _id }) => _id === poll._id);
     this.anwserService.fillPoll(fetchedPoll);  
   }
-
 
   reviewPoll(poll) {
     let answer = this.currentUser.answeredPolls.find(({ pollId}) => pollId === poll._id)
@@ -105,17 +103,17 @@ export class BasicComponent implements OnInit {
 
 
   isTestFilledByThisUser(test) {
-
+    return this.currentUser.answeredTests.find(item => item.testId === test._id);
   }
-
 
   fillTest(test) {
     this.anwserService.fillTest(test);
   }
 
-
-  reviewTest(test) {}
-
+  reviewTest(test) {
+    let answer = this.currentUser.answeredTests.find(({ testId}) => testId === test._id);
+    this.reviewService.getAnsweredTest(answer.answerId);
+  }
 
 
 

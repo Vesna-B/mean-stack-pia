@@ -1,0 +1,31 @@
+.mat-card {
+    margin-bottom: 0.5%;
+    margin-top: 1%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.infoDiv {
+    background-color: aliceblue
+}
+
+.titleDiv {
+    text-align: center;
+}
+
+.userInfo {
+    color: rgb(184, 11, 11)
+}
+
+.backBtn {
+    float: right
+}
+
+.points {
+    color: rgb(230, 19, 19)
+}
+
+.qaLabel {
+    font-style: oblique
+}
+

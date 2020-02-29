@@ -62,4 +62,18 @@ router.post("/answers", (req, res, next) => {
 });
 
 
+router.get("/answers/:id", (req, res, next) => {
+    AnsweredTest.findById({_id: req.params.id})
+        .then(response => {
+            console.log('Fetched test answer')
+            console.log(response);
+            res.status(200).json({
+                answer: response,
+                message: 'Answer fetched'
+            })
+        })
+        .catch(err => console.log(err))
+});
+
+
 module.exports = router;
