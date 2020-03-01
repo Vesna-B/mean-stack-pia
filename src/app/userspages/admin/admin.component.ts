@@ -47,9 +47,4 @@ export class AdminComponent implements OnInit {
     this.userService.deleteUser(id);
   }
 
-
-  logout() {
-    this.signupService.logout();
-  }
-
 }

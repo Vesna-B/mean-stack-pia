@@ -21,6 +21,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { AdminComponent } from './userspages/admin/admin.component';
 import { AuthorComponent } from './userspages/author/author.component';
@@ -32,6 +33,8 @@ import { AnswerpollComponent } from './answer/answerpoll/answerpoll.component';
 import { AnswertestComponent } from './answer/answertest/answertest.component';
 import { ReviewpollComponent } from './review/reviewpoll/reviewpoll.component';
 import { ReviewtestComponent } from './review/reviewtest/reviewtest.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +51,8 @@ import { ReviewtestComponent } from './review/reviewtest/reviewtest.component';
     AnswertestComponent,
     ReviewpollComponent,
     ReviewtestComponent,
+    HeaderComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +70,8 @@ import { ReviewtestComponent } from './review/reviewtest/reviewtest.component';
     MatSelectModule,
     MatTableModule,
     MatSortModule,
-    MatRadioModule
+    MatRadioModule,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

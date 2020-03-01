@@ -115,10 +115,4 @@ export class BasicComponent implements OnInit {
     this.reviewService.getAnsweredTest(answer.answerId);
   }
 
-
-
-  logout() {
-    this.signupService.logout();
-  }
-
 }

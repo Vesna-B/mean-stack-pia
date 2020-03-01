@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SignupService } from 'src/app/signup/signup.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-author',
@@ -8,15 +9,18 @@ import { SignupService } from 'src/app/signup/signup.service';
 })
 export class AuthorComponent implements OnInit {
 
-  constructor(private signupService: SignupService) { }
+  constructor(private signupService: SignupService, private router: Router) { }
 
   ngOnInit() {
   }
+  
 
-
-  logout() {
-    this.signupService.logout();
+  createPoll() {
+    this.router.navigate(['createpoll']);
   }
 
+  createTest() {
+    this.router.navigate(['createtest']);
+  }
 
 }

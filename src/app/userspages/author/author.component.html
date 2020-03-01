@@ -1,10 +1,8 @@
 <div class="divClass">
   <h1>Autor stranica</h1>
 </div>
+
 <div class="btnClass">
-  <span>
-    <a mat-flat-button color="primary" href="/createpoll">Kreiraj anketu</a>&nbsp;&nbsp;&nbsp;&nbsp;
-    <a mat-flat-button color="accent" href="/createtest">Kreiraj test</a>
-  </span>
-  <button class="logoutBtn" mat-flat-button type="button" (click)="logout()">Izloguj se</button>
+    <a mat-button color="primary" (click)="createPoll()">Kreiraj anketu</a>
+    <a mat-button color="accent" (click)="createTest()">Kreiraj test</a>
 </div>
