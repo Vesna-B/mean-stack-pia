@@ -6,3 +6,95 @@
     <a mat-button color="primary" (click)="createPoll()">Kreiraj anketu</a>
     <a mat-button color="accent" (click)="createTest()">Kreiraj test</a>
 </div>
+
+<mat-tab-group>
+  <mat-tab label="ANKETE">
+    <table mat-table #sortPoll="matSort" [dataSource]="dataSourcePoll" matSort>
+
+      <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Naziv </th>
+          <td mat-cell *matCellDef="let poll"> {{poll.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="startDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Datum početka </th>
+          <td mat-cell *matCellDef="let poll"> {{poll.startDate.getDate()}}. {{(poll.startDate.getMonth() + 1)}}. {{poll.startDate.getFullYear()}} </td>
+          </ng-container>
+
+      <ng-container matColumnDef="endDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Datum kraja </th>
+          <td mat-cell *matCellDef="let poll"> {{poll.endDate.getDate()}}. {{(poll.endDate.getMonth() + 1)}}. {{poll.endDate.getFullYear()}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fill">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+          <td mat-cell *matCellDef="let poll"> 
+              <span *ngIf="isPollFilledByThisUser(poll) && poll.author != currentUser.username">
+                  
+                  <button mat-button color="primary" type="button" (click)="reviewPoll(poll)">Pogledaj svoj odgovor</button>
+              </span> 
+              <span *ngIf="!isPollFilledByThisUser(poll) && (poll.startDate > today || poll.endDate < today) && poll.author != currentUser.username">
+                  <label>Anketa se ne moze popunjavati</label>
+              </span> 
+              <span *ngIf="!isPollFilledByThisUser(poll) && poll.startDate < today && poll.endDate > today && poll.author != currentUser.username">
+                  <button mat-button color="accent" type="button" (click)="fillPoll(poll)">Popuni anketu</button>
+              </span> 
+              <span *ngIf="poll.author == currentUser.username">
+                <label>Vi ste autor ove ankete.</label>
+              </span> 
+          </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsPoll"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumnsPoll;"></tr>
+    </table>
+  </mat-tab>
+
+  <mat-tab label="TESTOVI">
+    <table mat-table #sortTest="matSort" [dataSource]="dataSourceTest" matSort>
+
+      <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Naziv </th>
+          <td mat-cell *matCellDef="let test"> {{test.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="startDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Datum početka </th>
+          <td mat-cell *matCellDef="let test"> {{test.startDate.getDate()}}. {{(test.startDate.getMonth() + 1)}}. {{test.startDate.getFullYear()}} </td>
+          </ng-container>
+
+      <ng-container matColumnDef="endDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Datum kraja </th>
+          <td mat-cell *matCellDef="let test"> {{test.endDate.getDate()}}. {{(test.endDate.getMonth() + 1)}}. {{test.endDate.getFullYear()}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="duration">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Trajanje </th>
+          <td mat-cell *matCellDef="let test"> {{test.duration}} min </td>
+      </ng-container>
+
+      <ng-container matColumnDef="fill">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+          <td mat-cell *matCellDef="let test"> 
+              <span *ngIf="isTestFilledByThisUser(test) && test.author != currentUser.username">
+                  
+                  <button mat-button color="primary" type="button" (click)="reviewTest(test)">Pogledaj svoj rezultat</button>
+              </span> 
+              <span *ngIf="!isTestFilledByThisUser(test) && (test.startDate > today || test.endDate < today) && test.author != currentUser.username">
+                  <label>Test se ne moze popunjavati</label>
+              </span> 
+              <span *ngIf="!isTestFilledByThisUser(test) && test.startDate < today && test.endDate > today && test.author != currentUser.username">
+                  <button mat-button color="accent" type="button" (click)="fillTest(test)">Reši test</button>
+              </span> 
+              <span *ngIf="test.author == currentUser.username">
+                <label>Vi ste autor ovog testa.</label>
+              </span>
+          </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumnsTest"></tr>
+      <tr mat-row *matRowDef="let row2; columns: displayedColumnsTest;"></tr>
+    </table>
+  </mat-tab>
+</mat-tab-group>
+

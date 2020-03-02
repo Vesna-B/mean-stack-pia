@@ -22,9 +22,9 @@ export class ReviewpollComponent implements OnInit {
   goBack() {
     let currentUserType = localStorage.getItem('currentUserType');
     switch(currentUserType) {
-      case 'admin': this.router.navigate(['admin']);
-      case 'author': this.router.navigate(['author']);
-      case 'basic': this.router.navigate(['basic']);
+      case 'admin': this.router.navigate(['admin']); break;
+      case 'author': this.router.navigate(['author']); break;
+      case 'basic': this.router.navigate(['basic']); break;
     }
   }
 

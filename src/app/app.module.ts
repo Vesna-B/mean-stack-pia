@@ -22,6 +22,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import { AdminComponent } from './userspages/admin/admin.component';
 import { AuthorComponent } from './userspages/author/author.component';
@@ -71,7 +72,8 @@ import { FooterComponent } from './footer/footer.component';
     MatTableModule,
     MatSortModule,
     MatRadioModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

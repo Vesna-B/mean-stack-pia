@@ -76,7 +76,7 @@ export class AnswertestComponent implements OnInit {
         this.userService.addTestAnswer(this.test._id, response.answerId, user)
           .subscribe(response => {
             console.log(response.message);
-            this.router.navigate(['basic']);
+            this.router.navigate([`${this.currentUser.userType}`]);
           }, err => {
             console.log(err);
           })
@@ -85,7 +85,7 @@ export class AnswertestComponent implements OnInit {
 
 
   quit() {
-    this.router.navigate(['basic']);
+    this.router.navigate([`${this.currentUser.userType}`]);
   }
 
 }

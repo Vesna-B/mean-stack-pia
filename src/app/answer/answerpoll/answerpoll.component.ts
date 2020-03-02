@@ -64,7 +64,7 @@ export class AnswerpollComponent implements OnInit {
         this.userService.addPollAnswer(this.poll._id, response.answerId, user)
           .subscribe(response => {
             console.log(response.message);
-            this.router.navigate(['basic']);
+            this.router.navigate([`${this.currentUser.userType}`]);
           }, err => {
             console.log(err);
           })
@@ -73,7 +73,7 @@ export class AnswerpollComponent implements OnInit {
 
 
   quit() {
-    this.router.navigate(['basic']);
+    this.router.navigate([`${this.currentUser.userType}`]);
   }
 
 }

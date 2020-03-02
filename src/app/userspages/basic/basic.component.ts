@@ -2,14 +2,13 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 
-import { AnswerService } from 'src/app/answer/answer.service';
-import { SignupService } from 'src/app/signup/signup.service';
 import { UserService } from '../user.service';
+import { AnswerService } from 'src/app/answer/answer.service';
+import { ReviewService } from 'src/app/review/review.service';
 
 import { Poll } from 'src/app/models/poll';
 import { Test } from 'src/app/models/test';
 import { User } from 'src/app/models/usermodel';
-import { ReviewService } from 'src/app/review/review.service';
 
 @Component({
   selector: 'app-basic',
@@ -32,9 +31,8 @@ export class BasicComponent implements OnInit {
   @ViewChild('sortTest') sortTest: MatSort;
 
   constructor(
-    private anwserService: AnswerService, 
-    private signupService: SignupService,
     private userService: UserService,
+    private answerService: AnswerService, 
     private reviewService: ReviewService
   ) { }
   
@@ -58,7 +56,7 @@ export class BasicComponent implements OnInit {
 
 
   getPolls() {
-    this.anwserService.getPolls()
+    this.answerService.getPolls()
       .subscribe(responseData => {
         this.polls = responseData.polls;
         this.polls.forEach(poll => {
@@ -78,7 +76,7 @@ export class BasicComponent implements OnInit {
 
   fillPoll(poll) {
     let fetchedPoll = this.polls.find(({ _id }) => _id === poll._id);
-    this.anwserService.fillPoll(fetchedPoll);  
+    this.answerService.fillPoll(fetchedPoll);  
   }
 
   reviewPoll(poll) {
@@ -89,7 +87,7 @@ export class BasicComponent implements OnInit {
 
 
   getTests() {
-    this.anwserService.getTests()
+    this.answerService.getTests()
     .subscribe(responseData => {
       this.tests = responseData.tests;
       this.tests.forEach(test => {
@@ -107,7 +105,7 @@ export class BasicComponent implements OnInit {
   }
 
   fillTest(test) {
-    this.anwserService.fillTest(test);
+    this.answerService.fillTest(test);
   }
 
   reviewTest(test) {
