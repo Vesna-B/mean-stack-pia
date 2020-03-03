@@ -10,8 +10,10 @@ export class ReviewService {
 
   answeredPoll = null;
   answeredTest = null;
-  
 
+  answeredPolls = [];
+  answeredTests = [];
+  
   constructor(
     private http: HttpClient, 
     private router: Router,
@@ -91,4 +93,24 @@ export class ReviewService {
         }
       })
   }
+
+
+  getAnsweredPolls(id: string) {
+    this.http.get<any>('http://localhost:3000/polls/answersfor/' + id)
+      .subscribe(response => {
+        this.answeredPolls = response;
+        this.router.navigate(['reviewpollresults']);
+      })
+  }
+
+
+  getAnsweredTests(id: string) {
+    this.http.get<any>('http://localhost:3000/tests/answersfor/' + id)
+      .subscribe(response => {
+        this.answeredTests = response;
+        console.log(this.answeredTests)
+        this.router.navigate(['reviewtestresults']);
+      })
+  }
+
 }

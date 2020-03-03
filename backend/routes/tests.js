@@ -44,6 +44,25 @@ router.get("", (req, res, next) => {
 });
 
 
+router.get("/:id", (req, res, next) => {
+    Test.findById({_id: req.params.id})
+        .then(fetchedTest => {
+            res.status(200).json(fetchedTest);
+        });
+});
+
+
+router.delete("/:id", (req, res, next) => {
+    Test.deleteOne({ _id: req.params.id })
+        .then(() => {
+            res.status(200).json({
+                message: 'Test deleted successfully'
+            });
+        })
+        .catch(err => console.log(err));
+});
+
+
 router.post("/questions", (req, res, next) => {
     TestQuestion.findOne({ _id: req.body.id }).then(fetchedQuestion => {
         res.status(200).json(fetchedQuestion);
@@ -73,6 +92,16 @@ router.get("/answers/:id", (req, res, next) => {
             })
         })
         .catch(err => console.log(err))
+});
+
+
+router.get("/answersfor/:id", (req, res, next) => {
+    AnsweredTest.find({ testId: req.params.id })
+        .then(response => {
+            console.log('tests for author')
+            console.log(response);
+            res.status(200).json(response)
+        })
 });
 
 

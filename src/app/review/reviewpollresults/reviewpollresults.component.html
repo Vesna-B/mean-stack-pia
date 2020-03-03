@@ -1,0 +1,25 @@
+<mat-card>
+  <table mat-table #sort="matSort" [dataSource]="dataSource" matSort>
+
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Ispitanik </th>
+        <td mat-cell *matCellDef="let item"> {{item.userFirstName}} {{item.userLastName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Datum rođenja </th>
+        <td mat-cell *matCellDef="let item"> {{item.userDateOfBirth.getDate()}}. {{(item.userDateOfBirth.getMonth() + 1)}}. {{item.userDateOfBirth.getFullYear()}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="view">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> </th>
+        <td mat-cell *matCellDef="let item"> 
+          <button mat-button color="accent" type="button" (click)="reviewAnswer(item)">Detalji</button>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</mat-card>
+<button class="backBtn" mat-button type="button" (click)="goBack()">Nazad</button>

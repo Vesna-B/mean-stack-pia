@@ -111,4 +111,9 @@ export class AnswerService {
     return this.http.post<{ answerId:string, message: string }>('http://localhost:3000/tests/answers', test)
   }
 
+
+  getTest(id: string) {
+    return this.http.get<Test>('http://localhost:3000/tests/' + id)
+  }
+
 }

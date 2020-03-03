@@ -40,7 +40,9 @@
                   <button mat-button color="accent" type="button" (click)="fillPoll(poll)">Popuni anketu</button>
               </span> 
               <span *ngIf="poll.author == currentUser.username">
-                <label>Vi ste autor ove ankete.</label>
+                <label>Vi ste autor ove ankete.</label><br/>
+                <button mat-button class="reviewBtn" type="button" (click)="reviewPollAnswers(poll)">Vidi odgovore</button>
+                <button mat-button color="warn" type="button" (click)="deletePoll(poll)">Obriši anketu</button>
               </span> 
           </td>
       </ng-container>
@@ -87,7 +89,9 @@
                   <button mat-button color="accent" type="button" (click)="fillTest(test)">Reši test</button>
               </span> 
               <span *ngIf="test.author == currentUser.username">
-                <label>Vi ste autor ovog testa.</label>
+                <label>Vi ste autor ovog testa.</label><br/>
+                <button mat-button class="reviewBtn" type="button" (click)="reviewTestAnswers(test)">Vidi odgovore</button>
+                <button mat-button color="warn" type="button" (click)="deleteTest(test)">Obriši test</button>
               </span>
           </td>
       </ng-container>

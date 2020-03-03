@@ -46,6 +46,17 @@ router.get("", (req, res, next) => {
 });
 
 
+router.delete("/:id", (req, res, next) => {
+    Poll.deleteOne({ _id: req.params.id })
+        .then(() => {
+            res.status(200).json({
+                message: 'Poll deleted successfully'
+            });
+        })
+        .catch(err => console.log(err));
+});
+
+
 router.post("/questions", (req, res, next) => {
     PollQuestion.findOne({ _id: req.body.id }).then(fetchedQuestion => {
         res.status(200).json({
@@ -77,6 +88,16 @@ router.get("/answers/:id", (req, res, next) => {
             })
         })
         .catch(err => console.log(err))
+});
+
+
+router.get("/answersfor/:id", (req, res, next) => {
+    AnsweredPoll.find({ pollId: req.params.id })
+        .then(response => {
+            console.log('polls for author')
+            console.log(response);
+            res.status(200).json(response)
+        })
 });
 
 

@@ -30,4 +30,19 @@ export class CreateService {
       });
   }
 
+
+  deletePoll(id: string) {
+    this.http.delete("http://localhost:3000/polls/" + id)
+      .subscribe(() => {
+        console.log("Poll deleted");
+      });
+  }
+
+  deleteTest(id: string) {
+    this.http.delete("http://localhost:3000/tests/" + id)
+      .subscribe(() => {
+        console.log("Test deleted");
+      });
+  }
+
 }

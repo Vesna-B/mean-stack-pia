@@ -10,6 +10,7 @@ import { ReviewService } from 'src/app/review/review.service';
 import { Poll } from 'src/app/models/poll';
 import { Test } from 'src/app/models/test';
 import { User } from 'src/app/models/usermodel';
+import { CreateService } from 'src/app/create/create.service';
 
 
 @Component({
@@ -23,8 +24,7 @@ export class AuthorComponent implements OnInit {
   tests: Test[] = [];
   currentUser: User = null;
   today: Date;
-  
-  
+
   displayedColumnsPoll: string[] = ['name', 'startDate', 'endDate', 'fill'];
   displayedColumnsTest: string[] = ['name', 'startDate', 'endDate', 'duration', 'fill'];
   dataSourcePoll = null;
@@ -37,6 +37,7 @@ export class AuthorComponent implements OnInit {
     private userService: UserService,
     private answerService: AnswerService,
     private reviewService: ReviewService,
+    private createService: CreateService,
     private router: Router
   ) { }
 
@@ -97,6 +98,14 @@ export class AuthorComponent implements OnInit {
     this.reviewService.getAnsweredPoll(answer.answerId);
   }
 
+  reviewPollAnswers(poll) {
+    this.reviewService.getAnsweredPolls(poll._id);
+  }
+
+  deletePoll(poll) {
+    this.createService.deletePoll(poll._id);
+  }
+
 
 
   getTests() {
@@ -126,8 +135,12 @@ export class AuthorComponent implements OnInit {
     this.reviewService.getAnsweredTest(answer.answerId);
   }
 
+  reviewTestAnswers(test) {
+    this.reviewService.getAnsweredTests(test._id);
+  }
 
-
-
+  deleteTest(test) {
+    this.createService.deleteTest(test._id);
+  }
 
 }

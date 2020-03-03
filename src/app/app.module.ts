@@ -23,6 +23,7 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 import { AdminComponent } from './userspages/admin/admin.component';
 import { AuthorComponent } from './userspages/author/author.component';
@@ -36,6 +37,8 @@ import { ReviewpollComponent } from './review/reviewpoll/reviewpoll.component';
 import { ReviewtestComponent } from './review/reviewtest/reviewtest.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { ReviewpollresultsComponent } from './review/reviewpollresults/reviewpollresults.component';
+import { ReviewtestresultsComponent } from './review/reviewtestresults/reviewtestresults.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +57,8 @@ import { FooterComponent } from './footer/footer.component';
     ReviewtestComponent,
     HeaderComponent,
     FooterComponent,
+    ReviewpollresultsComponent,
+    ReviewtestresultsComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,7 +78,8 @@ import { FooterComponent } from './footer/footer.component';
     MatSortModule,
     MatRadioModule,
     MatToolbarModule,
-    MatTabsModule
+    MatTabsModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
