@@ -47,24 +47,30 @@ router.post("/login", (req, res, next) => {
     User.findOne({ username: req.body.username })
         .then(user => {
             if (user == null) {
-                return res.status(400).json({
+                res.status(400).json({
                     user: null,
                     message: "Korisnik nije pronađen"
                 });
             }
             if (user.password != req.body.password) {
-                return res.status(401).json({
+                res.status(401).json({
                     user: null,
                     message: "Pogrešna lozinka"
                 });
             }
-            if (user.approved != 'approved') {
-                return res.status(403).json({
+            if (user.approved == 'waiting') {
+                res.status(403).json({
                     user: null,
                     message: "Vaš zahtev za registraciju još uvek nije prihvaćen"
                 });
             }
-            return res.status(200).json({
+            if (user.approved == 'rejected') {
+                res.status(403).json({
+                    user: null,
+                    message: "Vaš zahtev za registraciju je odbijen"
+                });
+            }
+            res.status(200).json({
                 user: user,
                 message: 'Uspesno ste se ulogovali'
             });
@@ -109,6 +115,26 @@ router.put("", (req, res, next) => {
             res.status(200).json({
                 message: 'User updated'
             });
+        })
+        .catch(err => console.log(err));
+});
+
+
+router.put("/password", (req, res, next) => {
+    User.findById(req.body.id)
+        .then(fetchedUser => {
+            if (fetchedUser.password == req.body.oldPass) {
+                fetchedUser.password = req.body.newPass;
+                fetchedUser.save();
+                res.status(200).json({ 
+                    message: 'Password changed successfully'
+                 });
+            }
+            else {
+                res.status(401).json({
+                    message: 'Wrong old password'
+                });
+            }
         })
         .catch(err => console.log(err));
 });

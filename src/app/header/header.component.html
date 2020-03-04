@@ -1,6 +1,8 @@
 <mat-toolbar class="header">
   <span class="title"><b>ANKETE I TESTOVI</b></span>
   <span class="spacer"></span>
-  
-  <button *ngIf="isLoggedIn" mat-button (click)="logout()">Izloguj se</button> 
+  <span *ngIf="isLoggedIn">
+    <button mat-button routerLink="/password">Promeni lozinku</button>
+    <button  mat-button (click)="logout()">Izloguj se</button> 
+  </span>
 </mat-toolbar>

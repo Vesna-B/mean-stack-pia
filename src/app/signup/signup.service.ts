@@ -22,6 +22,7 @@ export class SignupService {
     this.http.post('http://localhost:3000/users', user)
       .subscribe(response => {
         console.log(response); 
+        alert('Uspešno ste se registrovali, čeka se da admin prihvati Vaš zahtev')
       });
 
   }
@@ -51,7 +52,14 @@ export class SignupService {
           this.router.navigate(['basic']);
         }
         //return response.message;
+      }, err => {
+        alert(err.error.message);
       });
+  }
+
+
+  changePassword(id: string, oldPass: string, newPass: string) {
+    return this.http.put('http://localhost:3000/users/password', {id, oldPass, newPass})
   }
 
 
@@ -60,6 +68,9 @@ export class SignupService {
     this.isLoggedInSub.next(false);
     localStorage.removeItem('currentUser');
     localStorage.removeItem('currentUserType');
+    if (localStorage.getItem('authorReview')) {
+      localStorage.removeItem('authorReview');
+    }
     this.router.navigate(['login']);
   }
 

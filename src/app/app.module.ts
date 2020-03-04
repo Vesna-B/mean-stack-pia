@@ -39,6 +39,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ReviewpollresultsComponent } from './review/reviewpollresults/reviewpollresults.component';
 import { ReviewtestresultsComponent } from './review/reviewtestresults/reviewtestresults.component';
+import { PasswordComponent } from './signup/password/password.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { ReviewtestresultsComponent } from './review/reviewtestresults/reviewtes
     FooterComponent,
     ReviewpollresultsComponent,
     ReviewtestresultsComponent,
+    PasswordComponent,
   ],
   imports: [
     BrowserModule,
