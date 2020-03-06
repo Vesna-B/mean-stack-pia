@@ -11,6 +11,10 @@
     text-align: center
 }
 
+.addUserBtn {
+    color: rgb(12, 161, 180)
+}
+
 .logoutClass {
     margin-left: 80%;
     margin-right: 2%;

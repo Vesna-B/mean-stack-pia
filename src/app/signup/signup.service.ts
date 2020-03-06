@@ -19,12 +19,15 @@ export class SignupService {
   }
 
   register(user: User) {
-    this.http.post('http://localhost:3000/users', user)
+    this.http.post<{ message: string, user: string }>('http://localhost:3000/users', user)
       .subscribe(response => {
         console.log(response); 
-        alert('Uspešno ste se registrovali, čeka se da admin prihvati Vaš zahtev')
+        if (localStorage.getItem('currentUserType') == 'admin') {
+          alert('Uspešno ste dodali novog korisnika');
+        } else {
+          alert('Uspešno ste se registrovali, čeka se da admin prihvati Vaš zahtev')
+        }
       });
-
   }
 
   login(username: string, password: string) {

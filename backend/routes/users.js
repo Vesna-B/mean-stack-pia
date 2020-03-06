@@ -21,10 +21,12 @@ router.post("", (req, res, next) => {
         answeredPolls: [],
         answeredTests: []
     });
+
     console.log('This information is from app.js');
     console.log(user);
     console.log(user.answeredPolls);
     console.log(user.answeredTests);
+
     user.save().then(createdUser => {
         res.status(200).json({
             message: 'User added successfully',
