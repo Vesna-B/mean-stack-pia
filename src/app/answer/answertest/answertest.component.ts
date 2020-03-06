@@ -16,6 +16,7 @@ export class AnswertestComponent implements OnInit, OnDestroy {
   answers = new Array<{ questionId: string, answerTitle: string, earnedPoints: number }>();
   currentUser: User = null;
   _currentUser: Subscription;
+  duration = null;
 
   constructor(
     private answerService: AnswerService, 
@@ -36,10 +37,17 @@ export class AnswertestComponent implements OnInit, OnDestroy {
       let a = { questionId: this.test.questions[i].id, answerTitle: "", earnedPoints: 0 }
       this.answers.push(a);
     }
+
+    console.log(this.answers);
+
+    this.duration = setTimeout(() => this.submit(), this.test.duration * 60 * 1000)
   }
 
 
   submit() {
+
+    clearTimeout(this.duration);
+
     let answerForm = null;
     let score = 0;
 
@@ -71,6 +79,7 @@ export class AnswertestComponent implements OnInit, OnDestroy {
         let user = localStorage.getItem('currentUser');
         this.userService.addTestAnswer(this.test._id, response.answerId, user)
       });
+   
   }
 
 
