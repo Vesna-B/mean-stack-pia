@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn } from '@angular/forms';
 import { confirmPasswordValidator } from '../validators';
 import { Router } from '@angular/router';
@@ -6,19 +6,19 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/usermodel';
 import { UserService } from 'src/app/userspages/user.service';
 import { SignupService } from '../signup.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-password',
   templateUrl: './password.component.html',
   styleUrls: ['./password.component.css']
 })
-export class PasswordComponent implements OnInit {
+export class PasswordComponent implements OnInit, OnDestroy {
 
   currentUser: User = null;
+  _currentUser: Subscription;
   message = '';
   form: FormGroup;
-
-  
 
 
   constructor(
@@ -26,8 +26,15 @@ export class PasswordComponent implements OnInit {
     private signupService: SignupService,
     private router: Router
   ) { }
+  
 
   ngOnInit() {
+    this.currentUser = this.userService.currentUser;
+    this._currentUser = this.userService.currentUser$
+      .subscribe(user => {
+        this.currentUser = user;
+      })
+
     this.form = new FormGroup({
       oldPass: new FormControl('', Validators.required),
       newPass: new FormControl('', [
@@ -39,11 +46,6 @@ export class PasswordComponent implements OnInit {
       ])
     }); //, { validators: confirmPasswordValidator }
 
-    let user = localStorage.getItem('currentUser');
-    this.userService.getUser(user)
-      .subscribe(response => {
-        this.currentUser = response.user;
-      })
     this.message = '';
   }
 
@@ -56,6 +58,7 @@ export class PasswordComponent implements OnInit {
     console.log(this.form.value);
     console.log(this.form.value.oldPass);
     console.log(this.form.value.newPass);
+    console.log(this.currentUser);
 
     if (this.form.value.oldPass != this.currentUser.password) {
       this.message = 'Niste uneli korektnu staru lozinku';
@@ -83,6 +86,11 @@ export class PasswordComponent implements OnInit {
       case 'author': this.router.navigate(['author']); break;
       case 'basic': this.router.navigate(['basic']); break;
     }
+  }
+
+
+  ngOnDestroy() {
+    this._currentUser.unsubscribe();
   }
 
 }

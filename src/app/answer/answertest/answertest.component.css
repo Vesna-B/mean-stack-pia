@@ -6,7 +6,7 @@
 }
 
 .infoDiv {
-    background-color: rgb(146, 199, 243)
+    background-color: rgb(191, 223, 252)
 }
 
 .titleDiv {
@@ -37,6 +37,10 @@
     margin: 5px;
 }
 
+.submitBtn {
+    background-color: rgb(191, 223, 252)
+}
+
 
 .btnDiv {
     margin: 2%;
@@ -44,5 +48,4 @@
 
 .quitBtn {
     float: right;
-    background-color: rgb(146, 199, 243)
 }

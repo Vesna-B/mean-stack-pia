@@ -10,7 +10,7 @@
 }
 
 .infoDiv {
-    background-color: lightcyan
+    background-color: rgb(191, 223, 252)
 }
 
 
@@ -53,12 +53,23 @@
 
 .optionDeleteBtn {
     margin-left: 2%;
-    /* margin-right: 0.3%; */
 }
 
 
+.questionDeleteBtn {
+    float: right;
+}
 
-.addBtnDiv {
-    margin-top: 2%;
-    background-color: cadetblue
+
+.btnDiv {
+    margin-top: 5%;
+}
+
+.addBtn {
+    background-color: rgb(191, 223, 252);
+    color: white;
+}
+
+.btnSubDiv {
+    float: right;
 }

@@ -1,3 +1,13 @@
+.infoDiv {
+    margin-top: 5%;
+    text-align: center
+}
+
+mat-spinner {
+    margin: 5%;
+    align-content: center;
+}
+
 table {
     width: 100%
 }

@@ -1,19 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AnswerService } from '../answer.service';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/userspages/user.service';
 import { User } from 'src/app/models/usermodel';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-answertest',
   templateUrl: './answertest.component.html',
   styleUrls: ['./answertest.component.css']
 })
-export class AnswertestComponent implements OnInit {
+export class AnswertestComponent implements OnInit, OnDestroy {
 
   test = null;
   answers = new Array<{ questionId: string, answerTitle: string, earnedPoints: number }>();
   currentUser: User = null;
+  _currentUser: Subscription;
 
   constructor(
     private answerService: AnswerService, 
@@ -21,22 +23,19 @@ export class AnswertestComponent implements OnInit {
     private router: Router
   ) { }
 
+
   ngOnInit() {
-    let username = localStorage.getItem('currentUser');
-    this.getUser(username);
+    this.currentUser = this.userService.currentUser;
+    this._currentUser = this.userService.currentUser$
+      .subscribe(user => {
+        this.currentUser = user
+      })
+
     this.test = this.answerService.testToAnswer;
     for (let i = 0; i < this.test.questions.length; i++) {
       let a = { questionId: this.test.questions[i].id, answerTitle: "", earnedPoints: 0 }
       this.answers.push(a);
     }
-  }
-
-
-  getUser(username) {
-    this.userService.getUser(username)
-      .subscribe(response => {
-        this.currentUser = response.user;
-      });
   }
 
 
@@ -67,25 +66,21 @@ export class AnswertestComponent implements OnInit {
       answers: this.answers
     };
 
-    console.log('Answer');
-    console.log(answerForm)  
-
     this.answerService.saveFilledTest(answerForm)
       .subscribe(response => {
         let user = localStorage.getItem('currentUser');
         this.userService.addTestAnswer(this.test._id, response.answerId, user)
-          .subscribe(response => {
-            console.log(response.message);
-            this.router.navigate([`${this.currentUser.userType}`]);
-          }, err => {
-            console.log(err);
-          })
       });
   }
 
 
   quit() {
     this.router.navigate([`${this.currentUser.userType}`]);
+  }
+
+
+  ngOnDestroy() {
+    this._currentUser.unsubscribe();
   }
 
 }

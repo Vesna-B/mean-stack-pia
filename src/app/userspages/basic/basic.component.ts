@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 
@@ -9,18 +9,20 @@ import { ReviewService } from 'src/app/review/review.service';
 import { Poll } from 'src/app/models/poll';
 import { Test } from 'src/app/models/test';
 import { User } from 'src/app/models/usermodel';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-basic',
   templateUrl: './basic.component.html',
   styleUrls: ['./basic.component.css']
 })
-export class BasicComponent implements OnInit {
+export class BasicComponent implements OnInit, OnDestroy {
 
   polls: Poll[] = [];
   tests: Test[] = [];
   currentUser: User = null;
   today: Date;
+  _currentUser: Subscription;
   
   displayedColumnsPoll: string[] = ['name', 'startDate', 'endDate', 'fill'];
   displayedColumnsTest: string[] = ['name', 'startDate', 'endDate', 'duration', 'fill'];
@@ -36,23 +38,17 @@ export class BasicComponent implements OnInit {
     private reviewService: ReviewService
   ) { }
   
+
   ngOnInit() {
-    let user = localStorage.getItem('currentUser');
     this.today = new Date();
-    this.getUser(user);
+    this.userService.getUser();
+    this._currentUser = this.userService.currentUser$
+      .subscribe(user => {
+        this.currentUser = user
+      })
     this.getPolls();
     this.getTests();
   }
-
-
-  getUser(username) {
-    this.userService.getUser(username)
-      .subscribe(response => {
-        this.currentUser = response.user;
-        console.log(this.currentUser);
-      })
-  }
-
 
 
   getPolls() {
@@ -66,7 +62,6 @@ export class BasicComponent implements OnInit {
         this.dataSourcePoll = new MatTableDataSource(this.polls);
         this.dataSourcePoll.sort = this.sortPoll;
       });
-
   }
   
 
@@ -111,6 +106,11 @@ export class BasicComponent implements OnInit {
   reviewTest(test) {
     let answer = this.currentUser.answeredTests.find(({ testId}) => testId === test._id);
     this.reviewService.getAnsweredTest(answer.answerId);
+  }
+
+
+  ngOnDestroy() {
+    this._currentUser.unsubscribe();
   }
 
 }

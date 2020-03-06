@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -11,6 +11,7 @@ import { Poll } from 'src/app/models/poll';
 import { Test } from 'src/app/models/test';
 import { User } from 'src/app/models/usermodel';
 import { CreateService } from 'src/app/create/create.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -18,12 +19,13 @@ import { CreateService } from 'src/app/create/create.service';
   templateUrl: './author.component.html',
   styleUrls: ['./author.component.css']
 })
-export class AuthorComponent implements OnInit {
+export class AuthorComponent implements OnInit, OnDestroy {
 
   polls: Poll[] = [];
   tests: Test[] = [];
-  currentUser: User = null;
   today: Date;
+  currentUser: User = null;
+  _currentUser: Subscription;
 
   displayedColumnsPoll: string[] = ['name', 'startDate', 'endDate', 'fill'];
   displayedColumnsTest: string[] = ['name', 'startDate', 'endDate', 'duration', 'fill'];
@@ -41,30 +43,24 @@ export class AuthorComponent implements OnInit {
     private router: Router
   ) { }
 
+
   ngOnInit() {
-    let user = localStorage.getItem('currentUser');
     this.today = new Date();
-    this.getUser(user);
+    this.userService.getUser();
+    this._currentUser = this.userService.currentUser$
+      .subscribe(user => {
+        this.currentUser = user
+      })
     this.getPolls();
     this.getTests();
   }
   
-
   createPoll() {
     this.router.navigate(['createpoll']);
   }
 
   createTest() {
     this.router.navigate(['createtest']);
-  }
-
-
-  getUser(username) {
-    this.userService.getUser(username)
-      .subscribe(response => {
-        this.currentUser = response.user;
-        console.log(this.currentUser);
-      })
   }
 
 
@@ -141,6 +137,11 @@ export class AuthorComponent implements OnInit {
 
   deleteTest(test) {
     this.createService.deleteTest(test._id);
+  }
+
+
+  ngOnDestroy() {
+    this._currentUser.unsubscribe();
   }
 
 }

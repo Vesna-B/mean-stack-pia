@@ -14,6 +14,8 @@ export class ReviewtestresultsComponent implements OnInit {
 
   testAnswers = [];
   maxPoints = 0;
+  isLoading = true;
+  isEmpty = false;
 
   displayedColumns: string[] = ['name', 'points'];
   dataSource = null;
@@ -28,20 +30,35 @@ export class ReviewtestresultsComponent implements OnInit {
 
   ngOnInit() {
     this.testAnswers = this.reviewService.answeredTests;
+
+    if (this.testAnswers.length == 0) {
+      this.isEmpty = true;
+    }
+
     this.dataSource = new MatTableDataSource(this.testAnswers);
     this.dataSource.sort = this.sort;
 
-    let id = this.testAnswers[0].testId;
-    //let condition = 0;
-    this.answerService.getTest(id)
-      .subscribe(response => {
-        response.questions.forEach(questionId => {
-          this.answerService.getTestQuestion(questionId)
-            .subscribe(response => {
-              this.maxPoints = this.maxPoints + response.points;
-            })
-        });
-      })
+    if (this.testAnswers.length != 0) {
+      let id = this.testAnswers[0].testId;
+      let condition = 0;
+      let numberOfQuestions = 0;
+
+      this.answerService.getTest(id)
+        .subscribe(response => {
+          numberOfQuestions = response.questions.length;
+            response.questions.forEach(questionId => {
+              this.answerService.getTestQuestion(questionId)
+              .subscribe(response => {
+                this.maxPoints = this.maxPoints + response.points;
+                condition = condition + 1;
+                
+                if (condition == numberOfQuestions) {
+                  this.isLoading = false;
+                }
+              })
+            });
+          })
+    }
   }
 
 

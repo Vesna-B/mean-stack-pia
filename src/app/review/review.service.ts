@@ -108,7 +108,6 @@ export class ReviewService {
     this.http.get<any>('http://localhost:3000/tests/answersfor/' + id)
       .subscribe(response => {
         this.answeredTests = response;
-        console.log(this.answeredTests)
         this.router.navigate(['reviewtestresults']);
       })
   }

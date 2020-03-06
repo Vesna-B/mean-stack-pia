@@ -30,7 +30,10 @@
     margin: 2%;
 }
 
+.submitBtn {
+    background-color: pink;
+}
+
 .quitBtn {
-    float: right;
-    background-color: pink
+    float: right;    
 }

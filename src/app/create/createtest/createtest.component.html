@@ -85,17 +85,21 @@
               </mat-select>
             </mat-form-field>
             
-            <button type="button" mat-button (click)="removeOption(i, j)" class="optionDeleteBtn">Izbriši opciju</button>
+            <button type="button" mat-button color="warn" (click)="removeOption(i, j)" class="optionDeleteBtn">Izbriši opciju</button>
           </div>
         </div>
-        <button type="button" mat-flat-button color="primary" (click)="addOption(i)">Dodaj ponuđeni odgovor</button> &nbsp;&nbsp;
-        <button type="button" mat-flat-button color="warn" (click)="removeQuestion(i)">Izbriši pitanje</button>
+        <button type="button" mat-button color="accent" (click)="addOption(i)">Dodaj ponuđeni odgovor</button> &nbsp;&nbsp;
+        <button class="questionDeleteBtn" type="button" mat-flat-button color="warn" (click)="removeQuestion(i)">Izbriši pitanje</button>
       </mat-card>
     </div>
 
-    <button class="addBtnDiv" type="button" mat-flat-button color="accent" (click)="addQuestion()">Dodaj pitanje</button> &nbsp;&nbsp; 
-    <button type="submit" mat-flat-button color="accent">Sačuvaj</button> &nbsp;&nbsp;
-    <button type="button" mat-flat-button (click)="quit()">Odustani</button>
+    <div class="btnDiv">
+      <button class="addBtn" type="button" mat-flat-button (click)="addQuestion()">Dodaj pitanje</button> 
+      <div class="btnSubDiv">
+        <button type="submit" mat-flat-button color="accent">Sačuvaj</button> &nbsp;&nbsp;
+        <button type="button" mat-button (click)="quit()">Odustani</button>
+      </div>
+    </div>
   </form>
 </div>
 

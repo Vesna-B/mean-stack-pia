@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../models/usermodel';
 import { Observable, Subject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,14 @@ import { map, tap } from 'rxjs/operators';
 export class UserService {
 
   users: User[];
+  currentUser: User;
+  private _currentUser$ = new Subject<User>();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
+
+  get currentUser$() {
+    return this._currentUser$.asObservable();
+  }
 
   getUsers(): Observable<{ users: User[] }> {
     return this.http.get<{ users: User[] }>("http://localhost:3000/users")
@@ -19,8 +26,13 @@ export class UserService {
   }
 
 
-  getUser(username) {
-    return this.http.post<{ user: User }>("http://localhost:3000/users/user", { username })
+  getUser() {
+    let username = localStorage.getItem('currentUser');
+    this.http.post<{ user: User }>("http://localhost:3000/users/user", { username })
+      .subscribe(response => {
+        this.currentUser = response.user;
+        this._currentUser$.next(this.currentUser);
+      })
   }
 
 
@@ -51,12 +63,30 @@ export class UserService {
 
 
   addPollAnswer(pollId: string, answerId: string, user: string) {
-    return this.http.put<{ user: any, message: string }>("http://localhost:3000/users/pollanswers", {pollId, answerId, user})
+    this.http.put<{ user: any, message: string }>("http://localhost:3000/users/pollanswers", {pollId, answerId, user})
+      .subscribe(response => {
+        console.log(response.message);
+        //console.log(this.currentUser.answeredPolls);
+        this.currentUser = response.user;
+        this._currentUser$.next(this.currentUser);
+        //console.log(this.currentUser.answeredPolls);
+        this.router.navigate([`${this.currentUser.userType}`]);
+      }, err => {
+        console.log(err);
+      })
   }
 
 
   addTestAnswer(testId: string, answerId: string, user: string) {
-    return this.http.put<{ user: any, message: string }>("http://localhost:3000/users/testanswers", {testId, answerId, user})
+    this.http.put<{ user: any, message: string }>("http://localhost:3000/users/testanswers", {testId, answerId, user})
+      .subscribe(response => {
+        console.log(response.message);
+        this.currentUser = response.user;
+        this._currentUser$.next(this.currentUser);
+        this.router.navigate([`${this.currentUser.userType}`]);
+      }, err => {
+        console.log(err);
+      })
   }
   
 

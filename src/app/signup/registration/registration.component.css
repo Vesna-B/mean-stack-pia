@@ -19,6 +19,10 @@
     color: white
 }
 
+.linkBtn {
+    color:  rgb(12, 161, 180);
+}
+
 .alert {
     color: goldenrod;
 }

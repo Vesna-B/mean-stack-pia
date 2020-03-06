@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class ReviewpollresultsComponent implements OnInit {
 
   pollAnswers = [];
+  isEmpty = false;
 
   displayedColumns: string[] = ['name', 'date', 'view'];
   dataSource = null;
@@ -23,10 +24,15 @@ export class ReviewpollresultsComponent implements OnInit {
   ngOnInit() {
     this.pollAnswers = this.reviewService.answeredPolls;
     let condition = 0;
+
+    if (this.pollAnswers.length == 0) {
+      this.isEmpty = true;
+    }
+
     this.pollAnswers.forEach(answer => {
       answer.userDateOfBirth = new Date(answer.userDateOfBirth);
       condition = condition + 1;
-
+      
       if (condition == this.pollAnswers.length) {
         this.dataSource = new MatTableDataSource(this.pollAnswers);
         this.dataSource.sort = this.sort;

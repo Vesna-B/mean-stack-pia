@@ -10,7 +10,7 @@
 }
 
 .infoDiv {
-    background-color: lightgoldenrodyellow
+    background-color: pink
 }
 
 
@@ -23,21 +23,36 @@
     width: 100%;
 }
 
-.deleteBtn {
-    margin-left: 95%
+.questionDiv {
+    display: flex;
+    width: 100%;
 }
 
-.optionField {
+.questionTitle {
     width: 90%;
+    margin-right: 0.5%;
 }
 
-.selectField {
-    width: 25%;
+.deleteBtn {
+    float: right;
+    margin: 2%;
 }
 
-.addBtnDiv {
-    margin-top: 2%;
-    background-color: goldenrod;
+
+.btnDiv {
+    margin-top: 5%;
 }
+
+.addBtn {
+    background-color: rgb(12, 161, 180);
+    color: white;
+}
+
+.btnSubDiv {
+    float: right;
+}
+
+
+
 
 
