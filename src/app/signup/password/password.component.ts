@@ -55,11 +55,6 @@ export class PasswordComponent implements OnInit, OnDestroy {
 
   submit() {
 
-    console.log(this.form.value);
-    console.log(this.form.value.oldPass);
-    console.log(this.form.value.newPass);
-    console.log(this.currentUser);
-
     if (this.form.value.oldPass != this.currentUser.password) {
       this.message = 'Niste uneli korektnu staru lozinku';
     }

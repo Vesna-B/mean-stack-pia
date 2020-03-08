@@ -39,9 +39,6 @@ export class AnswertestComponent implements OnInit, OnDestroy {
       this.answers.push(a);
     }
 
-    console.log(this.answers);
-
-
     this.alertMsg = setTimeout(() => alert('Imate još 10 sekundi za rešavanje testa'), (this.test.duration * 60 - 10) * 1000);
     this.duration = setTimeout(() => this.submit(), this.test.duration * 60 * 1000)
   }
@@ -65,8 +62,6 @@ export class AnswertestComponent implements OnInit, OnDestroy {
       }
     }
 
-    console.log(answerForm);
-
     for (let i = 0; i < this.answers.length; i++) {
       score = score + this.answers[i].earnedPoints;
     } 
@@ -79,6 +74,8 @@ export class AnswertestComponent implements OnInit, OnDestroy {
       score: score,
       answers: this.answers
     };
+
+    console.log(answerForm);
 
     this.answerService.saveFilledTest(answerForm)
       .subscribe(response => {
@@ -95,6 +92,8 @@ export class AnswertestComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy() {
+    clearTimeout(this.alertMsg);
+    clearTimeout(this.duration);
     this._currentUser.unsubscribe();
   }
 

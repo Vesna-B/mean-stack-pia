@@ -4,14 +4,16 @@
 </div>
 
 <mat-card *ngFor="let user of users">
-  <p>{{user.name}}&nbsp;{{user.surname}}</p>
-  <p>{{user.username}}</p>
-  <p>{{user.email}}</p>
-  <button mat-flat-button type="button" color="warn" (click)="delete(user._id)">Obriši</button>&nbsp;
+  <p>Korisnik: <span class="userInfo"><b>{{user.name}} {{user.surname}}</b></span></p>
+  <p>Korisničko ime: <span class="userInfo"><b>{{user.username}}</b></span></p>
+  <p>Email: <span class="userInfo"><b>{{user.email}}</b></span></p>
+  <span *ngIf="user.username != currentUser">
+    <button mat-flat-button type="button" color="warn" (click)="delete(user._id)">Obriši</button>&nbsp;
+  </span>
   <span *ngIf="user.approved == 'waiting' ">
     <button mat-flat-button type="button" color="accent" (click)="accept(user)">Prihvati</button>&nbsp;
     <button mat-flat-button type="button" color="primary" (click)="reject(user)">Odbij</button>
   </span> 
-  <span *ngIf="user.approved == 'approved' ">Ovaj korisnik je prihvaćen</span>
+  <span *ngIf="user.approved == 'approved' && user.username != currentUser">Ovaj korisnik je prihvaćen</span>
   <span *ngIf="user.approved == 'rejected' ">Ovaj korisnik je odbijen</span>
 </mat-card>

@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { User } from '../models/usermodel';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { UserService } from '../userspages/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,11 @@ export class SignupService {
   isLoggedIn = false;
   isLoggedInSub = new Subject<boolean>();
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(
+    private http: HttpClient, 
+    private router: Router,
+    private userService: UserService
+  ) { }
 
   getIsLoggedIn() {
     return this.isLoggedInSub.asObservable();
@@ -22,10 +27,13 @@ export class SignupService {
     this.http.post<{ message: string, user: string }>('http://localhost:3000/users', user)
       .subscribe(response => {
         console.log(response); 
+        this.userService.getUsers();
         if (localStorage.getItem('currentUserType') == 'admin') {
           alert('Uspešno ste dodali novog korisnika');
+          this.router.navigate(['admin']);
         } else {
           alert('Uspešno ste se registrovali, čeka se da admin prihvati Vaš zahtev')
+          this.router.navigate(['login']);
         }
       });
   }

@@ -77,11 +77,10 @@
       <mat-error *ngIf="regForm.submitted && typeTag.invalid">Ovo polje je obavezno</mat-error>
     </mat-form-field>
 
-    <button class="submitBtn" mat-flat-button type="submit">Registruj se</button>
+    <button class="submitBtn" mat-flat-button type="submit">Registruj (se)</button>
   </form>
 
-  <br />
-    <div>
-      Ako već imate nalog, idite na stranicu <button class="linkBtn" mat-button routerLink="/login">login</button>
-    </div>
+  <div class="goToLogin" *ngIf="!isAdmin"> 
+    Ako već imate nalog, idite na stranicu <button class="linkBtn" mat-button routerLink="/login">login</button>
+  </div>
 </mat-card>

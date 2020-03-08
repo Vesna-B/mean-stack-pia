@@ -76,7 +76,6 @@ export class AuthorComponent implements OnInit, OnDestroy {
         this.dataSourcePoll = new MatTableDataSource(this.polls);
         this.dataSourcePoll.sort = this.sortPoll;
       });
-
   }
   
 
