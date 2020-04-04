@@ -1,17 +1,22 @@
 <mat-card>
-  <form #loginForm="ngForm" (ngSubmit)="login()" >
+  <form #loginForm="ngForm" (ngSubmit)="loginForm.form.valid && login()" >
     <h3 class="loginTitle">LOGIN STRANICA</h3>
     <mat-form-field>
-      <input matInput type="text" placeholder="Korisničko ime" name="username" [(ngModel)]="username" required/>
+      <input #usernameTag='ngModel' matInput type="text" placeholder="Korisničko ime" name="username" [(ngModel)]="username" required/>
+      <mat-error *ngIf="loginForm.submitted && usernameTag.invalid">Ovo polje je obavezno</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput type="password" placeholder="Lozinka" name="password" [(ngModel)]="password" required />
+      <input #passTag='ngModel' matInput type="password" placeholder="Lozinka" name="password" [(ngModel)]="password" required />
+      <mat-error *ngIf="loginForm.submitted && passTag.invalid">Ovo polje je obavezno</mat-error>
     </mat-form-field>
-    <button mat-flat-button type="submit" color="primary">Uloguj se</button>
+    <button class="submitBtn" mat-flat-button type="submit">Uloguj se</button>
   </form>
-  
+  <br/>
+  <div class="msg" *ngIf="message != '' ">
+    {{ message }}
+  </div>
   <br />
   <div>
-    Ako nemate nalog, možete ga napraviti na stranici <a routerLink="/registration">registracija</a>
+    Ako nemate nalog, možete ga napraviti na stranici <button class="linkBtn" mat-button routerLink="/registration">registracija</button>
   </div>
 </mat-card>

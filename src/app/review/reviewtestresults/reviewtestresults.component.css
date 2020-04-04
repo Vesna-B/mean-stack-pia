@@ -1,0 +1,22 @@
+.infoDiv {
+    margin-top: 5%;
+    text-align: center
+}
+
+mat-spinner {
+    margin: 5%;
+    align-content: center;
+}
+
+table {
+    width: 100%
+}
+
+mat-card {
+    margin: 2%;
+}
+
+.backBtn {
+    margin: 2%;
+    float: right;
+}

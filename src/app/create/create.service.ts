@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Question } from './question';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -28,6 +27,21 @@ export class CreateService {
       .subscribe(res => {
         console.log(res.message);
         this.router.navigate(['author']);
+      });
+  }
+
+
+  deletePoll(id: string) {
+    this.http.delete("http://localhost:3000/polls/" + id)
+      .subscribe(() => {
+        console.log("Poll deleted");
+      });
+  }
+
+  deleteTest(id: string) {
+    this.http.delete("http://localhost:3000/tests/" + id)
+      .subscribe(() => {
+        console.log("Test deleted");
       });
   }
 

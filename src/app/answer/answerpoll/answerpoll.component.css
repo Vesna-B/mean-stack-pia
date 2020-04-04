@@ -1,0 +1,39 @@
+.mat-card {
+    margin-bottom: 0.5%;
+    margin-top: 1%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+.infoDiv {
+    background-color: pink
+}
+
+.titleDiv {
+    text-align: center;
+}
+
+.div {
+    margin-bottom: 2%
+}
+
+.mat-form-field {
+    width: 100%;
+    margin-top: 2%
+}
+
+.qDiv {
+    background-color: beige
+}
+
+.btnDiv {
+    margin: 2%;
+}
+
+.submitBtn {
+    background-color: pink;
+}
+
+.quitBtn {
+    float: right;    
+}

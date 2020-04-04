@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { User } from 'src/app/signup/usermodel';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { User } from 'src/app/models/usermodel';
 import { UserService } from '../user.service';
 import { SignupService } from 'src/app/signup/signup.service';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -9,25 +10,24 @@ import { SignupService } from 'src/app/signup/signup.service';
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css']
 })
-export class AdminComponent implements OnInit {
+export class AdminComponent implements OnInit, OnDestroy {
 
   users: User[] = [];
+  _users: Subscription;
+  currentUser: string;
 
   constructor(private userService: UserService, private signupService: SignupService) { }
 
   ngOnInit() {
-    this.getUsers();
-  }
-
-  getUsers() {
-    this.userService
-      .getUsers()
+    this.currentUser = localStorage.getItem('currentUser');
+    this.userService.getUsers();
+    this._users = this.userService.users$
       .subscribe(responseData => {
-        this.users = responseData.users;
-      });
+        this.users = responseData;
+      })
   }
 
-
+  
   accept(user: User) {
     let userForChange = user;
     userForChange.approved = 'approved';
@@ -45,11 +45,12 @@ export class AdminComponent implements OnInit {
   delete(id: string) {
     console.log(id);
     this.userService.deleteUser(id);
+    this.userService.getUsers();
   }
 
 
-  logout() {
-    this.signupService.logout();
+  ngOnDestroy() {
+    this._users.unsubscribe();
   }
 
 }

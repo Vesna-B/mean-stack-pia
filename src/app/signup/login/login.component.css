@@ -13,3 +13,16 @@
 .mat-form-field {
     width: 100%;
 }
+
+.linkBtn {
+    color:  rgb(12, 161, 180);
+}
+
+.submitBtn {
+    background-color: rgb(12, 161, 180);
+    color: white
+}
+
+.msg {
+    color: red;
+}

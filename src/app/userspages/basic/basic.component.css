@@ -1,17 +1,22 @@
-.mat-card {
-    margin-bottom: 2%;
-    margin-top: 2%;
-    margin-left: 2%;
-    margin-right: 2%;
-}
-
 .divClass {
     margin-bottom: 2%;
     margin-top: 4%;
     text-align: center
 }
 
-.logoutClass {
-    margin-left: 80%;
-    margin-right: 2%;
+.mat-tab-group {
+    margin: 2%
+}
+
+table {
+    width: 100%;
+}
+  
+th.mat-sort-header-sorted {
+    color: black;
+}
+
+h3 {
+   text-align: center;
+   color: grey; 
 }

@@ -11,4 +11,6 @@ export class User {
     email: string;
     userType: string;
     approved: string;
+    answeredPolls: { pollId: string, answerId: string }[];
+    answeredTests: { testId: string, answerId: string }[];
 }

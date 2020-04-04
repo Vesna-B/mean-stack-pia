@@ -1,0 +1,23 @@
+<mat-card class="infoDiv">
+  <button class="backBtn" mat-button (click)="goBack()">Nazad</button>
+  <div class="titleDiv">
+    <h2>Vaši odgovori za odabrani test</h2>
+  </div> 
+  <div>
+    <p>Ispitanik: <span class="userInfo"><b>{{ answeredTest.userFirstName }} {{ answeredTest.userLastName}}</b></span></p>     
+    <p>Datum rođenja: <span class="userInfo"><b>{{ answeredTest.userDateOfBirth.getDate() }}. {{ (answeredTest.userDateOfBirth.getMonth() + 1) }}. {{ answeredTest.userDateOfBirth.getFullYear() }}</b></span></p>
+    <p>Ukupan broj osvojenih bodova na testu: <span class="userInfo"><b>{{ answeredTest.score }}</b></span></p>
+  </div>
+</mat-card>
+
+<mat-card>
+  <div *ngFor="let answer of answeredTest.answers">
+    <label class="qaLabel">Pitanje:</label><br/>
+    <p>{{ answer.questionTitle }}</p>
+    <br>
+    <label class="qaLabel">Odgovor:</label><br/>
+    <p>{{ answer.answerTitle }}</p><br/>
+    <p>Na ovom pitanju ostvarili ste <span class="points">{{answer.earnedPoints}}</span>/<span class="points">{{answer.maxPoints}}</span> bodova</p>
+    <hr/>
+  </div>
+</mat-card>

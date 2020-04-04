@@ -1,5 +1,9 @@
+<span *ngIf="isAdmin">
+  <button class="backBtn" mat-button routerLink="/admin">Nazad</button>
+</span>
+  
 <mat-card class="example-card">
-  <form #regForm="ngForm" (ngSubmit)="register()">
+  <form #regForm="ngForm" (ngSubmit)="regForm.valid && register()">
     <h3 class="regTitle">REGISTRACIJA</h3>
 
     <mat-form-field>
@@ -22,14 +26,14 @@
       <input #passTag='ngModel' matInput type="password" placeholder="Lozinka" name="passwod" [(ngModel)]="password" required 
               pattern="^(?=.*[A-Z])(?=.*\d)(?=.*\W)[a-zA-Z].{7,}$"/>
       <mat-error *ngIf="regForm.submitted && passTag.invalid">
-        <span *ngIf="passTag.errors.pattern" class="alert">Lozinka mora sadržati minimum 1 veliko slovo, 1 broj, 1 specijalni karakter, mora početi slovom i mora biti dužine 8 karaktera</span>
+        <span *ngIf="passTag.errors.pattern" class="alert">Lozinka mora sadržati minimum 1 veliko slovo, 1 broj, 1 specijalni karakter, mora početi slovom i mora biti dužine najmanje 8 karaktera</span>
         <span *ngIf="!passTag.errors.pattern">Ovo polje je obavezno!</span> 
       </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <input #repPassTag='ngModel' matInput type="password" placeholder="Potvrda lozinke" name="repeatPasswod" [(ngModel)]="repeatPassword" required /> 
-      <label *ngIf="repPassTag.value != passTag.value" class="alert">Ovo polje mora biti isto kao i prethodno!</label>
+      <mat-error *ngIf="repPassTag.value != passTag.value" class="alert">Ovo polje mora biti isto kao i prethodno!</mat-error>
       <mat-error *ngIf="regForm.submitted && repPassTag.invalid">Ovo polje je obavezno!</mat-error>
     </mat-form-field>
 
@@ -46,8 +50,11 @@
     </mat-form-field>
 
     <mat-form-field>
-      <input #identTag='ngModel' matInput placeholder="JMBG" name="ident" [(ngModel)]="identNum" required />
-      <mat-error *ngIf="regForm.submitted && identTag.invalid">Ovo polje je obavezno</mat-error>
+      <input #identTag='ngModel' matInput placeholder="JMBG" name="ident" [(ngModel)]="identNum" required minlength="13" maxlength="13"/>
+      <mat-error *ngIf="regForm.submitted && identTag.invalid">
+        <span *ngIf="identTag.errors.minlength || identTag.errors.maxlength">JMBG mora biti dužine 13 cifara</span>
+        <span *ngIf="!identTag.errors.minlength && !identTag.errors.maxlength">Ovo polje je obavezno</span>
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
@@ -60,11 +67,20 @@
       <mat-error *ngIf="regForm.submitted && emailTag.invalid">Ovo polje je obavezno</mat-error>
     </mat-form-field>
 
-    <button mat-flat-button type="submit" color="primary">Registruj se</button>
+    <mat-form-field *ngIf="isAdmin">
+      <mat-select #typeTag='ngModel' placeholder="Tip korisnika" name="type" [(ngModel)]="userType" required>
+        <mat-option></mat-option>
+        <mat-option value="admin">Administrator</mat-option>
+        <mat-option value="author">Autor</mat-option>
+        <mat-option value="basic">Ispitanik</mat-option>
+      </mat-select>
+      <mat-error *ngIf="regForm.submitted && typeTag.invalid">Ovo polje je obavezno</mat-error>
+    </mat-form-field>
+
+    <button class="submitBtn" mat-flat-button type="submit">Registruj (se)</button>
   </form>
 
-  <br />
-    <div>
-      Ako već imate nalog, idite na stranicu <a routerLink="/login">login</a>
-    </div>
+  <div class="goToLogin" *ngIf="!isAdmin"> 
+    Ako već imate nalog, idite na stranicu <button class="linkBtn" mat-button routerLink="/login">login</button>
+  </div>
 </mat-card>

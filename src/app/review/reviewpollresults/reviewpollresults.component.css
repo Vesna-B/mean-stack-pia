@@ -1,0 +1,17 @@
+.infoDiv {
+    margin-top: 5%;
+    text-align: center
+}
+
+table {
+    width: 100%
+}
+
+mat-card {
+    margin: 2%;
+}
+
+.backBtn {
+    margin: 2%;
+    float: right;
+}

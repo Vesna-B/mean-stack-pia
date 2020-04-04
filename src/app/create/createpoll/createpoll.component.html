@@ -41,25 +41,46 @@
                   </mat-form-field>
               </td>
           </tr>
+          <tr>
+            <td>Tip ankete</td>
+            <td>
+              <mat-form-field>
+                <mat-label>Izaberite tip</mat-label>
+                <mat-select formControlName="pollType" required>
+                  <mat-option></mat-option>
+                  <mat-option value="anonymous">Anonimna</mat-option>
+                  <mat-option value="personal">Personalizovana</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr>
       </table>
     </mat-card>
 
     <div formArrayName="questions">
       <mat-card [formGroupName]="i" *ngFor="let question of getQuestions(questionForm); let i = index">
-
-        <mat-form-field appearance="outline">
-          <mat-label>Pitanje</mat-label>
-          <textarea matInput formControlName="questionTitle" required></textarea>
-        </mat-form-field>
-
-        <button type="button" mat-flat-button color="warn" (click)="removeQuestion(i)">Izbriši pitanje</button>
+        <div class="questionDiv">
+          <mat-form-field class="questionTitle" appearance="outline">
+            <mat-label>Pitanje</mat-label>
+            <textarea matInput formControlName="questionTitle" required></textarea>
+          </mat-form-field>
+          <button type="button" mat-button color="warn" (click)="removeQuestion(i)">Izbriši pitanje</button>
+        </div>
       </mat-card>
     </div>
 
-    <button class="addBtnDiv" type="button" mat-flat-button color="accent" (click)="addQuestion()">Dodaj pitanje</button> &nbsp;&nbsp;
-    <button type="submit" mat-flat-button color="accent">Sačuvaj</button>   
+    <div class="btnDiv">
+      <button class="addBtn" type="button" mat-flat-button (click)="addQuestion()">Dodaj pitanje</button> 
+      <div class="btnSubDiv">
+        <button type="submit" mat-flat-button color="accent">Sačuvaj</button>&nbsp;&nbsp;  
+        <button type="button" mat-button (click)="quit()">Odustani</button> 
+      </div>
+    </div>
   </form>
 </div>
+
+
+
 
 
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../usermodel';
+import { User } from '../../models/usermodel';
 import { SignupService } from '../signup.service';
 
 @Component({
@@ -8,6 +8,8 @@ import { SignupService } from '../signup.service';
   styleUrls: ['./registration.component.css']
 })
 export class RegistrationComponent implements OnInit {
+
+  isAdmin = false;
 
   name: string;
   surname: string;
@@ -19,6 +21,7 @@ export class RegistrationComponent implements OnInit {
   identNum: string;
   phone: string;
   email: string;
+  userType: string;
 
   user: User;
 
@@ -26,6 +29,9 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit() {
     this.user = new User();
+    if (localStorage.getItem('currentUserType') == 'admin') {
+      this.isAdmin = true;
+    }
   }
 
   register() {
@@ -39,11 +45,19 @@ export class RegistrationComponent implements OnInit {
     this.user.identNum = this.identNum;
     this.user.phone = this.phone;
     this.user.email = this.email;
-    this.user.userType = 'basic';
-    this.user.approved = 'waiting';
-    
-    this.signupService.register(this.user);
 
+    if (this.isAdmin) {
+      this.user.userType = this.userType;
+      this.user.approved = 'approved';
+    } else {
+      this.user.userType = 'basic';
+      this.user.approved = 'waiting';
+    }
+
+    this.user.answeredPolls = [];
+    this.user.answeredTests = [];
+    
+    this.signupService.register(this.user);   
   }
 
 }

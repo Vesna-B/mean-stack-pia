@@ -1,3 +1,8 @@
+.backBtn {
+    margin: 2%;
+    float: right;
+}
+
 .regTitle {
     text-align: center;
 }
@@ -14,6 +19,20 @@
     width: 100%;
 }
 
+.submitBtn {
+    margin-top: 3%;
+    background-color: rgb(12, 161, 180);
+    color: white
+}
+
+.linkBtn {
+    color:  rgb(12, 161, 180);
+}
+
 .alert {
     color: goldenrod;
+}
+
+.goToLogin {
+    margin-top: 3%;
 }

@@ -1,0 +1,24 @@
+<mat-card class="infoDiv">
+  <button class="backBtn" mat-button (click)="goBack()">Nazad</button>
+  <div class="titleDiv">
+    <h2>Vaši odgovori za odabranu anketu</h2>
+  </div>
+  <div *ngIf="answeredPoll.userFirstName == '' ">
+    Anketa je anonimna
+  </div>
+  <div *ngIf="answeredPoll.userFirstName != '' ">
+    <p>Ispitanik: <span class="userInfo"><b>{{ answeredPoll.userFirstName }} {{ answeredPoll.userLastName}}</b></span></p>     
+    <p>Datum rođenja: <span class="userInfo"><b>{{ answeredPoll.userDateOfBirth.getDate() }}. {{ (answeredPoll.userDateOfBirth.getMonth() + 1) }}. {{ answeredPoll.userDateOfBirth.getFullYear() }}</b></span></p>
+  </div>
+</mat-card>
+
+<mat-card>
+  <div *ngFor="let answer of answeredPoll.answers">
+    <label class="qaLabel">Pitanje:</label><br/>
+    <p>{{ answer.questionTitle }}</p>
+    <br>
+    <label class="qaLabel">Odgovor:</label><br/>
+    <p>{{ answer.answerTitle }}</p>
+    <hr/>
+  </div>
+</mat-card>

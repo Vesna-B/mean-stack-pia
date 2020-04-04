@@ -9,6 +9,12 @@ import { BasicComponent } from './userspages/basic/basic.component';
 import { CreatepollComponent } from './create/createpoll/createpoll.component';
 import { CreatetestComponent } from './create/createtest/createtest.component';
 import { AnswerpollComponent } from './answer/answerpoll/answerpoll.component';
+import { AnswertestComponent } from './answer/answertest/answertest.component';
+import { ReviewpollComponent } from './review/reviewpoll/reviewpoll.component';
+import { ReviewtestComponent } from './review/reviewtest/reviewtest.component';
+import { ReviewpollresultsComponent } from './review/reviewpollresults/reviewpollresults.component';
+import { ReviewtestresultsComponent } from './review/reviewtestresults/reviewtestresults.component';
+import { PasswordComponent } from './signup/password/password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -19,7 +25,13 @@ const routes: Routes = [
   { path: 'basic', component: BasicComponent },
   { path: 'createpoll', component: CreatepollComponent },
   { path: 'createtest', component: CreatetestComponent },
-  { path: 'answerpoll', component: AnswerpollComponent }
+  { path: 'answerpoll', component: AnswerpollComponent },
+  { path: 'answertest', component: AnswertestComponent },
+  { path: 'reviewpoll', component: ReviewpollComponent },
+  { path: 'reviewtest', component: ReviewtestComponent },
+  { path: 'reviewpollresults', component: ReviewpollresultsComponent },
+  { path: 'reviewtestresults', component: ReviewtestresultsComponent },
+  { path: 'password', component: PasswordComponent }
 ];
 
 @NgModule({

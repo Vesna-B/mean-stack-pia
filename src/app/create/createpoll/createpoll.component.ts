@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { CreateService } from '../create.service';
-import { Question } from '../question';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-createpoll',
@@ -10,7 +10,11 @@ import { Question } from '../question';
 })
 export class CreatepollComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private createService: CreateService) { }
+  constructor(
+    private formBuilder: FormBuilder, 
+    private createService: CreateService, 
+    private router: Router
+  ) {}
 
   questionForm: FormGroup;
 
@@ -21,6 +25,7 @@ export class CreatepollComponent implements OnInit {
       info: ['', Validators.required],
       startDate: [Date, Validators.required],
       endDate: [Date, Validators.required],
+      pollType: ['', Validators.required],
       questions: this.formBuilder.array([
         this.initQuestion()
       ])
@@ -31,18 +36,18 @@ export class CreatepollComponent implements OnInit {
   initQuestion() {
     return this.formBuilder.group({
       questionTitle: ['']
-      // questionType: [''],
+      // answerType: [''],
       // options: new FormArray([
       //   this.initOptions()
       // ])
     });
   }
 
-  initOptions() {
-    return this.formBuilder.group({
-      optionTitle: ['']
-    });
-  }
+  // initOptions() {
+  //   return this.formBuilder.group({
+  //     optionTitle: ['']
+  //   });
+  // }
 
 
   addQuestion() {
@@ -50,19 +55,19 @@ export class CreatepollComponent implements OnInit {
     questionArray.push(this.initQuestion());
   }
 
-  addOption(i) {
-    const optionArray = <FormArray>this.questionForm.get(['questions', i, 'options']);
-    optionArray.push(this.initOptions());
-  }
+  // addOption(i) {
+  //   const optionArray = <FormArray>this.questionForm.get(['questions', i, 'options']);
+  //   optionArray.push(this.initOptions());
+  // }
 
 
   getQuestions(form) {
     return form.controls.questions.controls;
   }
 
-  getOptions(question) {
-    return question.controls.options.controls;
-  }
+  // getOptions(question) {
+  //   return question.controls.options.controls;
+  // }
 
 
   removeQuestion(i) {
@@ -70,15 +75,18 @@ export class CreatepollComponent implements OnInit {
     questionArray.removeAt(i);
   }
 
-  removeOption(i, j) {
-    const optionArray = <FormArray>this.questionForm.get(['questions', i, 'options']);
-    optionArray.removeAt(j);
-  }
+  // removeOption(i, j) {
+  //   const optionArray = <FormArray>this.questionForm.get(['questions', i, 'options']);
+  //   optionArray.removeAt(j);
+  // }
 
 
   submit() {
-    
     this.createService.createPoll(this.questionForm.value);
+  }
+
+  quit() {
+    this.router.navigate(['author']);
   }
 
 }

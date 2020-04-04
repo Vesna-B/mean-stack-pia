@@ -45,7 +45,7 @@
             <td>Trajanje testa u minutima (maksimalno 3 minuta)</td>
             <td>
                 <mat-form-field>
-                    <input matInput type="number" formControlName="duration">
+                    <input matInput type="number" formControlName="duration" max="3">
                 </mat-form-field>
             </td>
           </tr>
@@ -60,34 +60,46 @@
           <textarea matInput formControlName="questionTitle" required></textarea>
         </mat-form-field>
 
-        <mat-form-field class="selectField">
-          <mat-label>Tip pitanja</mat-label>
-          <mat-select formControlName="questionType" required>
-            <mat-option></mat-option>
-            <mat-option>Unos numeričke vrednosti</mat-option>
-            <mat-option>Unos kratkog teksta</mat-option>
-            <mat-option>Izbor jednog od više ponuđenih odgovora</mat-option>
-            <mat-option>Izbor više od više ponuđenih odgovora</mat-option>
-          </mat-select>
+        <mat-form-field class="pointsField" appearance="outline">
+          <mat-label>Broj bodova</mat-label>
+          <input type="number" matInput formControlName="points" required>
         </mat-form-field>
 
+        <div class="explanationDiv">
+          Dodajte ponuđene odgovore i označite tačan.
+        </div>
+
         <div formArrayName="options">
-          <div [formGroupName]="j" *ngFor="let option of getOptions(question); let j = index">
-            <mat-form-field class="optionField" appearance="outline">
+          <div [formGroupName]="j" *ngFor="let option of getOptions(question); let j = index" class="options">
+            <mat-form-field class="optionTitle" appearance="outline">
               <mat-label>Ponuđeni odgovor</mat-label>
               <input matInput formControlName="optionTitle">
             </mat-form-field>
-            &nbsp;
-            <button type="button" mat-flat-button (click)="removeOption(i, j)">Izbriši opciju</button>
+
+            <mat-form-field class="optionSelect">
+              <mat-label>Tačno?</mat-label>
+              <mat-select formControlName="isCorrect" required>
+                <mat-option></mat-option>
+                <mat-option value="yes">Tačno</mat-option>
+                <mat-option value="no">Netačno</mat-option>
+              </mat-select>
+            </mat-form-field>
+            
+            <button type="button" mat-button color="warn" (click)="removeOption(i, j)" class="optionDeleteBtn">Izbriši opciju</button>
           </div>
         </div>
-        <button type="button" mat-flat-button color="primary" (click)="addOption(i)">Dodaj ponuđeni odgovor</button> &nbsp;&nbsp;
-        <button type="button" mat-flat-button color="warn" (click)="removeQuestion(i)">Izbriši pitanje</button>
+        <button type="button" mat-button color="accent" (click)="addOption(i)">Dodaj ponuđeni odgovor</button> &nbsp;&nbsp;
+        <button class="questionDeleteBtn" type="button" mat-flat-button color="warn" (click)="removeQuestion(i)">Izbriši pitanje</button>
       </mat-card>
     </div>
 
-    <button class="addBtnDiv" type="button" mat-flat-button color="accent" (click)="addQuestion()">Dodaj pitanje</button> &nbsp;&nbsp; 
-    <button type="submit" mat-flat-button color="accent">Sačuvaj</button>
+    <div class="btnDiv">
+      <button class="addBtn" type="button" mat-flat-button (click)="addQuestion()">Dodaj pitanje</button> 
+      <div class="btnSubDiv">
+        <button type="submit" mat-flat-button color="accent">Sačuvaj</button> &nbsp;&nbsp;
+        <button type="button" mat-button (click)="quit()">Odustani</button>
+      </div>
+    </div>
   </form>
 </div>
 
